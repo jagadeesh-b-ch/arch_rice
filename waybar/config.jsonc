@@ -1,0 +1,92 @@
+// -*- mode: jsonc -*-
+{
+  // "layer": "top", // Waybar at top layer
+  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  // "height": 30, // Waybar height (to be removed for auto height)
+  // "width": 1280, // Waybar width
+  "spacing": 4, // Gaps between modules (4px)
+
+  // Load Modules
+  "include": [
+    "~/.config/waybar/connectivity_config.jsonc",
+    "~/.config/waybar/resources_config.jsonc",
+    "~/.config/waybar/controls_config.jsonc",
+    "~/.config/waybar/power_config.jsonc",
+  ],
+
+  // Choose the order of the modules
+  "modules-left": ["custom/launcher", "hyprland/workspaces"],
+  "modules-center": [],
+  "modules-right": [
+    "group/time",
+    "group/connectivity",
+    "group/controls",
+    "group/resources",
+    "group/power",
+  ],
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "*": 6,
+    },
+  },
+  "custom/launcher": {
+    "format": "",
+    "on-click": "wofi --show drun --replace",
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": "",
+    },
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
+    },
+  },
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10,
+  },
+  // Group time
+  "group/time": {
+    "orientation": "inherit",
+    "modules": ["clock"],
+  },
+  "clock": {
+    // "timezone": "America/New_York",
+    "interval": 1,
+    "format": "{:%r %a %d %b, %Y}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}",
+  },
+  "custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+      "spotify": "",
+      "default": "🎜",
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
+    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+  },
+  "custom/power": {
+    "format": "⏻ ",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+    "menu-actions": {
+      "shutdown": "shutdown",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate",
+    },
+  },
+}

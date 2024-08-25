@@ -1,0 +1,17 @@
+{
+  // Group Connectivity
+  "group/connectivity": {
+    "orientation": "inherit",
+    "modules": ["network"],
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "interval": 1,
+    "format-wifi": "   {signalStrength}%",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "on-click": "hyprctl dispatch -- exec [floating] alacritty -e impala",
+  },
+}

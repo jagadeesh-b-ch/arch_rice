@@ -1,0 +1,138 @@
+@import "./theme/wal-theme.css";
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+window#waybar {
+  background-color: alpha(@background-col, 0.8);
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+}
+
+/*Light color - #a1e5f0 161, 229, 240*/
+/* Dark color - #2fd9f5 47, 217, 245*/
+/* Medium color - #67e1f5 */
+#workspaces,
+#time,
+#connectivity,
+#resources,
+#controls,
+#power,
+#custom-launcher {
+  background-color: alpha(@accent-col, 0.2);
+  border-radius: 16px;
+  color: @foreground-col;
+  border: solid 1px alpha(@accent-col, 1);
+  padding: 3px 3px;
+  margin-bottom: 3px;
+}
+
+#workspaces>*,
+#time *,
+#connectivity *,
+#resources *,
+#controls *,
+#power *,
+#custom-launcher * {
+  margin-left: 3px;
+}
+
+#workspaces>*:first-child,
+#time:first-child,
+#connectivity>*:first-child,
+#resources>*:first-child,
+#controls>*:first-child,
+#power:first-child,
+#custom-launcher>*:first-child {
+  margin-left: 0px;
+}
+
+#workspaces button,
+#cpu,
+#memory,
+#temperature,
+#network,
+#clock,
+#battery,
+#power-profiles-daemon,
+#wireplumber,
+#backlight,
+#custom-launcher {
+  color: @foreground-col;
+  padding: 0px 6px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 16px;
+}
+
+#custom-launcher {
+  font-size: 16px;
+  padding: 0px 15px 0px 10px;
+}
+
+#workspaces button:hover,
+#clock:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#battery:hover,
+#power-profiles-daemon:hover,
+#wireplumber:hover,
+#backlight:hover,
+#network:hover,
+#custom-launcher:hover {
+  background: alpha(@accent-col, 0.4);
+}
+
+#workspaces button.focused {
+  background-color: alpha(@accent-col, 1);
+  min-width: 50px;
+}
+
+#workspaces button.active {
+  background-color: alpha(@accent-col, 1);
+  min-width: 50px;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @foreground-col;
+  background-color: alpha(@accent-col, 1);
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: @foreground-col;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left>widget:first-child>#workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right>widget:last-child>#workspaces {
+  margin-right: 0;
+}
+
+#network.disconnected {
+  background-color: #f53c3c;
+}

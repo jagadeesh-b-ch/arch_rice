@@ -1,0 +1,17 @@
+{
+  "group/controls": {
+    "orientation": "inherit",
+    "modules": ["wireplumber", "backlight"],
+  },
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": " ",
+    "on-click": "helvum",
+    "format-icons": [" ", " ", " "],
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+  },
+}
