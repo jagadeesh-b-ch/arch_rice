@@ -37,22 +37,22 @@ button {
 }
 
 #workspaces>*,
-#time *,
-#connectivity *,
-#resources *,
-#controls *,
-#power *,
-#custom-launcher * {
+#time*,
+#connectivity*,
+#resources*,
+#controls*,
+#power*,
+#custom-launcher* {
   margin-left: 3px;
 }
 
 #workspaces>*:first-child,
-#time:first-child,
-#connectivity>*:first-child,
-#resources>*:first-child,
-#controls>*:first-child,
-#power:first-child,
-#custom-launcher>*:first-child {
+#time>*:first-child*,
+#connectivity>*:first-child*,
+#resources>*:first-child*,
+#controls>*:first-child*,
+#power>*:first-child*,
+#custom-launcher>*:first-child* {
   margin-left: 0px;
 }
 

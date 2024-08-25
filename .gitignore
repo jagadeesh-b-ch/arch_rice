@@ -1,0 +1,4 @@
+!waybar/*
+!hypr/*
+!nvim/*
+nvim/lazy-lock.json
