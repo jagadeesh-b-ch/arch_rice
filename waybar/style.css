@@ -64,6 +64,7 @@ button {
 #clock,
 #battery,
 #power-profiles-daemon,
+#power-menu,
 #wireplumber,
 #backlight,
 #custom-launcher {
@@ -85,6 +86,7 @@ button {
 #temperature:hover,
 #battery:hover,
 #power-profiles-daemon:hover,
+#power-menu:hover,
 #wireplumber:hover,
 #backlight:hover,
 #network:hover,

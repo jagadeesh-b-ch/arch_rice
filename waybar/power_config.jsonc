@@ -2,7 +2,7 @@
   // Group power
   "group/power": {
     "orientation": "inherit",
-    "modules": ["power-profiles-daemon", "battery"],
+    "modules": ["power-profiles-daemon", "battery", "power-menu"],
   },
   "battery": {
     "interval": 1,
@@ -33,5 +33,9 @@
       "balanced": " ",
       "power-saver": " ",
     },
+  },
+  "power-menu": {
+    "format": " ",
+    "on-click": "wlogout -b 6",
   },
 }
