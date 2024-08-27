@@ -1,0 +1,12 @@
+@import "../../.cache/wal/colors-waybar.css";
+
+@define-color accent-col @color4;
+
+@define-color bg-col alpha(@background, 0.8);
+
+@define-color accent-bg-col alpha(@accent-col, 0.2);
+@define-color accent-hover-col alpha(@accent-col, 0.4);
+@define-color accent-active-col alpha(@accent-col, 1);
+@define-color accent-border-col alpha(@accent-col, 1);
+
+@define-color default-text-col alpha(@foreground, 1); 

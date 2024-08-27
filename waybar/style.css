@@ -1,13 +1,13 @@
-@import "./theme/wal-theme.css";
+@import "../theme/wal-theme.css";
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-family: "0xProto Nerd Font Propo"; /*Font Awesome 6 Free; Symbols Nerd Font Mono; 0xProto Nerd Font Mono;*/
   font-size: 12px;
 }
 
 window#waybar {
-  background-color: alpha(@background-col, 0.8);
+  background-color: @bg-col;
 }
 
 button {
@@ -18,9 +18,6 @@ button {
   border-radius: 0;
 }
 
-/*Light color - #a1e5f0 161, 229, 240*/
-/* Dark color - #2fd9f5 47, 217, 245*/
-/* Medium color - #67e1f5 */
 #workspaces,
 #time,
 #connectivity,
@@ -28,10 +25,10 @@ button {
 #controls,
 #power,
 #custom-launcher {
-  background-color: alpha(@accent-col, 0.2);
+  background-color: @accent-bg-col;
   border-radius: 16px;
-  color: @foreground-col;
-  border: solid 1px alpha(@accent-col, 1);
+  color: @default-text-col;
+  border: solid 1px @accent-border-col;
   padding: 3px 3px;
   margin-bottom: 3px;
 }
@@ -64,11 +61,11 @@ button {
 #clock,
 #battery,
 #power-profiles-daemon,
-#power-menu,
+#custom-power-menu,
 #wireplumber,
 #backlight,
 #custom-launcher {
-  color: @foreground-col;
+  color: @default-text-col;
   padding: 0px 6px;
   transition: all 0.3s ease-in-out;
   border-radius: 16px;
@@ -76,7 +73,7 @@ button {
 
 #custom-launcher {
   font-size: 16px;
-  padding: 0px 15px 0px 10px;
+  padding: 0px 15px 0px 15px;
 }
 
 #workspaces button:hover,
@@ -86,21 +83,21 @@ button {
 #temperature:hover,
 #battery:hover,
 #power-profiles-daemon:hover,
-#power-menu:hover,
+#custom-power-menu:hover,
 #wireplumber:hover,
 #backlight:hover,
 #network:hover,
 #custom-launcher:hover {
-  background: alpha(@accent-col, 0.4);
+  background: @accent-hover-col;
 }
 
 #workspaces button.focused {
-  background-color: alpha(@accent-col, 1);
+  background-color: @accent-active-col;
   min-width: 50px;
 }
 
 #workspaces button.active {
-  background-color: alpha(@accent-col, 1);
+  background-color: @accent-active-col;
   min-width: 50px;
 }
 
@@ -110,14 +107,13 @@ button {
 
 #battery.charging,
 #battery.plugged {
-  color: @foreground-col;
-  background-color: alpha(@accent-col, 1);
+  color: @default-text-col;
+  background-color: @accent-active-col;
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
   background-color: #f53c3c;
-  color: @foreground-col;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: steps(12);

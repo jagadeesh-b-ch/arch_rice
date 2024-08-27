@@ -5,13 +5,13 @@
   },
   "wireplumber": {
     "format": "{volume}% {icon}",
-    "format-muted": " ",
+    "format-muted": "",
     "on-click": "helvum",
-    "format-icons": [" ", " ", " "],
+    "format-icons": ["", "", ""],
   },
   "backlight": {
     "device": "intel_backlight",
     "format": "{percent}% {icon}",
-    "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
   },
 }

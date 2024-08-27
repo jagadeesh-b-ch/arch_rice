@@ -2,7 +2,7 @@
   // Group power
   "group/power": {
     "orientation": "inherit",
-    "modules": ["power-profiles-daemon", "battery", "power-menu"],
+    "modules": ["power-profiles-daemon", "battery", "custom/power-menu"],
   },
   "battery": {
     "interval": 1,
@@ -18,7 +18,7 @@
     "format-alt": "{time} {icon}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": [" ", " ", " ", " ", " "],
+    "format-icons": ["", "", "", "", ""],
   },
   "battery#bat2": {
     "bat": "BAT2",
@@ -28,14 +28,14 @@
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
-      "default": " ",
-      "performance": " ",
-      "balanced": " ",
-      "power-saver": " ",
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
     },
   },
-  "power-menu": {
-    "format": " ",
+  "custom/power-menu": {
+    "format": "",
     "on-click": "wlogout -b 6",
   },
 }

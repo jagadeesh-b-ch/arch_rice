@@ -1,5 +1,0 @@
-@import "../../../.cache/wal/colors-waybar.css";
-
-@define-color background-col @background;
-@define-color accent-col @color4;
-@define-color foreground-col @foreground;
