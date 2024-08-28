@@ -7,14 +7,19 @@
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "interval": 1,
-    "format-wifi": " {signalStrength}%",
+    "format-wifi": "{icon}",
     "format-ethernet": "{ipaddr}/{cidr} ",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "󰤭",
+    "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
     "on-click": "hyprctl dispatch -- exec [floating] alacritty -e impala",
   },
   "bluetooth": {
-    "format": "󰂯 {num_connections}"
+    "format": "󰂯",
+    "format-connected": "󰂯 {num_connections}",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "on-click": "hyprctl dispatch -- exec [floating] alacritty -e bluetui"
   }
 }

@@ -2,7 +2,7 @@
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: "0xProto Nerd Font Propo"; /*Font Awesome 6 Free; Symbols Nerd Font Mono; 0xProto Nerd Font Mono;*/
+  font-family: "0xProto Nerd Font Propo", "Font Awesome 6 Free"; /*Font Awesome 6 Free; Symbols Nerd Font Mono; 0xProto Nerd Font Mono;*/
   font-size: 12px;
 }
 
@@ -133,6 +133,3 @@ button {
   margin-right: 0;
 }
 
-#network.disconnected {
-  background-color: #f53c3c;
-}
