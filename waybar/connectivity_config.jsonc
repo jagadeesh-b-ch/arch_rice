@@ -2,7 +2,7 @@
   // Group Connectivity
   "group/connectivity": {
     "orientation": "inherit",
-    "modules": ["network"],
+    "modules": ["network", "bluetooth"],
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -14,4 +14,7 @@
     "format-disconnected": "Disconnected ⚠",
     "on-click": "hyprctl dispatch -- exec [floating] alacritty -e impala",
   },
+  "bluetooth": {
+    "format": "󰂯 {num_connections}"
+  }
 }
