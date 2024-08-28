@@ -1,6 +1,8 @@
 @import "../theme/wal-theme.css";
 
 * {
+  font-family: "0xProto Nerd Font Propo";
+  font-size: 24px;
   background-image: none;
   box-shadow: none;
 }
@@ -10,11 +12,19 @@ window {
 }
 
 window>*>* {
-  background-color: red;
-  /* margin: "0px 15px 0px 15px"; */
+  background-color: @accent-bg-col;
+  border-radius: 16px;
+  border-color: @accent-border-col;
+  border-width: 1px;
+  border-style: solid;
 }
 
-button {
+/* window>*>* {
+  background-color: red;
+  margin: "0px 15px 0px 15px";
+} */
+
+/* button {
   border-radius: 16px;
   border-color: @accent-border-col;
   text-decoration-color: @default-text-col;
@@ -30,34 +40,29 @@ button {
 button:hover {
   background-color: @accent-hover-col;
   outline-style: none;
-}
-
-/* #lock {
-  background-image: image(url("/usr/share/wlogout/icons/lock.png"),
-      url("/usr/local/share/wlogout/icons/lock.png"));
-}
-
-#logout {
-  background-image: image(url("/usr/share/wlogout/icons/logout.png"),
-      url("/usr/local/share/wlogout/icons/logout.png"));
-}
-
-#suspend {
-  background-image: image(url("/usr/share/wlogout/icons/suspend.png"),
-      url("/usr/local/share/wlogout/icons/suspend.png"));
-}
-
-#hibernate {
-  background-image: image(url("/usr/share/wlogout/icons/hibernate.png"),
-      url("/usr/local/share/wlogout/icons/hibernate.png"));
-}
-
-#shutdown {
-  background-image: image(url("/usr/share/wlogout/icons/shutdown.png"),
-      url("/usr/local/share/wlogout/icons/shutdown.png"));
-}
-
-#reboot {
-  background-image: image(url("/usr/share/wlogout/icons/reboot.png"),
-      url("/usr/local/share/wlogout/icons/reboot.png"));
 } */
+
+#lock,
+#logout,
+#suspend,
+#hibernate,
+#shutdown,
+#reboot {
+  margin: 10px;
+    padding-top: 10px;
+  border-radius: 16px;
+  border: none;
+  color: @default-text-col;
+  background-color: @accent-bg-col;
+}
+
+#lock:hover,
+#logout:hover,
+#suspend:hover,
+#hibernate:hover,
+#shutdown:hover,
+#reboot:hover {
+  background-color: @accent-hover-col;
+}
+
+

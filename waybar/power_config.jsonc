@@ -36,6 +36,6 @@
   },
   "custom/power-menu": {
     "format": "",
-    "on-click": "wlogout -b 6",
+    "on-click": "wlogout",
   },
 }
