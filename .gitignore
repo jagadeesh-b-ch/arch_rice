@@ -2,7 +2,6 @@
 !waybar/*
 !hypr/*
 !nvim/*
-!wal/*
 !wlogout/*
 nvim/lazy-lock.json
 gedit/
