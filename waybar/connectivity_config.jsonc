@@ -13,13 +13,13 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "󰤭",
     "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
-    "on-click": "hyprctl dispatch -- exec [floating] alacritty -e impala",
+    "on-click": "hyprctl dispatch -- exec [tag +bar_launch] alacritty -e impala",
   },
   "bluetooth": {
     "format": "󰂯",
     "format-connected": "󰂯 {num_connections}",
     "format-off": "󰂲",
     "format-disabled": "󰂲",
-    "on-click": "hyprctl dispatch -- exec [floating] alacritty -e bluetui"
+    "on-click": "hyprctl dispatch -- exec [tag +bar_launch] alacritty -e bluetui"
   }
 }
