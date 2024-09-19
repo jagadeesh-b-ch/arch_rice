@@ -2,7 +2,8 @@ return {
   "norcalli/nvim-colorizer.lua",
   config = function()
     require("colorizer").setup({
-      css = {
+      '*';
+    }, {
         RGB = true,      -- #RGB hex codes
         RRGGBB = true,   -- #RRGGBB hex codes
         names = true,    -- "Name" codes like Blue
@@ -13,7 +14,6 @@ return {
         css_fn = false,  -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes: foreground, background
         mode = "background", -- Set the display mode.
-      },
     })
   end,
 }
