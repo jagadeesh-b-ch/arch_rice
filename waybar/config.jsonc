@@ -31,7 +31,7 @@
   },
   "custom/launcher": {
     "format": "",
-    "on-click": "wofi --show drun --replace",
+    "on-click": "rofi -show drun",
   },
   "keyboard-state": {
     "numlock": true,

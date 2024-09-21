@@ -1,0 +1,10 @@
+
+* {{
+    bg-col: #{background.strip}CC;
+    accent-bg-col: #{color4.strip}33;
+    accent-hov-col: #{color4.strip}66;
+    accent-active-col: #{color4.strip}FF;
+    accent-border-col: #{color4.strip}FF;
+    text-col: #{foreground.strip}FF;
+}}
+

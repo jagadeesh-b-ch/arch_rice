@@ -1,0 +1,160 @@
+@theme "/dev/null"
+@theme "../../.cache/wal/color4.rasi"
+
+#window {
+    background-color: @bg-col;
+    border: 1px solid;
+    border-color: @accent-border-col;
+    padding: 4px;
+    border-radius: 16px;
+}
+
+#mainbox {
+    border: 0;
+    background-color: @accent-bg-col;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+#message {
+    border: 2px 0px 0px;
+    border-color: @accent-border-col;
+    padding: 1px;
+}
+
+#textbox {
+    text-color: @text-col;
+}
+
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+#textbox-prompt-colon {
+    background-color: transparent;
+    expand: false;
+    str: ":";
+    margin: 0px 0.3em 0em 0em;
+    text-color: @text-col;
+}
+
+#listview {
+    fixed-height: 0;
+    border: 2px 0px 0px;
+    border-color: @accent-border-col;
+    spacing: 2px;
+    scrollbar: true;
+    padding: 2px 0px 0px;
+    background-color: transparent;
+}
+
+#element {
+    border: 0;
+    padding: 8px;
+    background-color: @accent-bg-col;
+    border: 1px solid;
+    border-color: @accent-bg-col;
+    border-radius: 16px;
+}
+
+#element-text {
+    background-color: transparent;
+    text-col: @text-col;
+}
+
+#element.normal.normal {
+    padding: 16px;
+    background-color: transparent;
+    text-color: @text-col;
+}
+
+#element.normal.urgent {
+    background-color: @accent-bg-col;
+    text-color: @text-col;
+}
+
+#element.normal.active {
+    background-color: @accent-active-col;
+    text-color: @text-col;
+}
+
+#element.selected.normal {
+    background-color: @accent-hov-col;
+    text-color: @text-col;
+}
+
+#element.selected.urgent {
+    background-color: @accent-bg-col;
+    text-color: @text-col;
+}
+
+#element.selected.active {
+    background-color: @accent-active-col;
+    text-color: @text-col;
+}
+
+#element.alternate.normal {
+    background-color: @accent-bg-col;
+    text-color: @text-col;
+}
+
+#element.alternate.urgent {
+    background-color: @accent-bg-col;
+    text-color: @text-col;
+}
+
+#element.alternate.active {
+    background-color: @accent-active-col;
+    text-color: @text-col;
+}
+
+#scrollbar {
+    width: 4px;
+    border: 0;
+    handle-width: 8px;
+    padding: 0;
+    background-color: @accent-bg-col;
+}
+
+#sidebar {
+    border: 2px 0px 0px;
+    border-color: @accent-border-col;
+}
+
+#button {
+    text-color: @text-col;
+}
+
+#button.selected {
+    background-color: @accent-bg-col;
+    text-color: @text-col;
+}
+
+#inputbar {
+    spacing: 0;
+    text-color: @text-col;
+    padding: 8px;
+    border-color: @accent-border-col;
+    border: 1px solid;
+    border-radius: 16px;
+    background-color: transparent;
+}
+
+#case-indicator {
+    background-color: transparent;
+    spacing: 0;
+    text-color: @text-col;
+}
+
+#entry {
+    background-color:transparent;
+    spacing: 0;
+    text-color: @text-col;
+}
+
+#prompt {
+    spacing: 0;
+    text-color: @text-col;
+    background-color: transparent;
+}
+
