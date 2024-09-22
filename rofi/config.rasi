@@ -1,8 +1,12 @@
-@theme "/dev/null"
 @theme "../../.cache/wal/color4.rasi"
 
+configuration {
+    show-icons: true;
+    font: "0xProto Nerd Font Propo";
+}
+
 #window {
-    background-color: @bg-col;
+    background-color: @bg-transparent-col;
     border: 1px solid;
     border-color: @accent-border-col;
     padding: 4px;
@@ -11,15 +15,16 @@
 
 #mainbox {
     border: 0;
-    background-color: @accent-bg-col;
-    padding: 16px;
+    background-color: @accent-bg-transparent-col;
+    padding: 8px;
     border-radius: 16px;
 }
 
 #message {
-    border: 2px 0px 0px;
+    enabled: false;
+    border: 0px 0px 0px;
     border-color: @accent-border-col;
-    padding: 1px;
+    padding: 0px;
 }
 
 #textbox {
@@ -40,6 +45,7 @@
 
 #listview {
     fixed-height: 0;
+    lines: 6;
     border: 2px 0px 0px;
     border-color: @accent-border-col;
     spacing: 2px;
@@ -51,15 +57,22 @@
 #element {
     border: 0;
     padding: 8px;
-    background-color: @accent-bg-col;
-    border: 1px solid;
-    border-color: @accent-bg-col;
+    background-color: transparent;
     border-radius: 16px;
+    orientation: horizontal;
+    children: [element-icon, element-text];
+    spacing: 8px;
 }
 
 #element-text {
     background-color: transparent;
-    text-col: @text-col;
+    text-color: @text-col;
+    vertical-align: 0.5;
+}
+
+#element-icon {
+    background-color: transparent;
+    size: 1.25em;
 }
 
 #element.normal.normal {
@@ -79,12 +92,12 @@
 }
 
 #element.selected.normal {
-    background-color: @accent-hov-col;
+    background-color: @accent-active-col;
     text-color: @text-col;
 }
 
 #element.selected.urgent {
-    background-color: @accent-bg-col;
+    background-color: @accent-active-col;
     text-color: @text-col;
 }
 
@@ -94,18 +107,15 @@
 }
 
 #element.alternate.normal {
-    background-color: @accent-bg-col;
-    text-color: @text-col;
+    background-color: transparent;
 }
 
 #element.alternate.urgent {
-    background-color: @accent-bg-col;
-    text-color: @text-col;
+    background-color: transparent;
 }
 
 #element.alternate.active {
-    background-color: @accent-active-col;
-    text-color: @text-col;
+    background-color: transparent;
 }
 
 #scrollbar {
@@ -113,7 +123,10 @@
     border: 0;
     handle-width: 8px;
     padding: 0;
-    background-color: @accent-bg-col;
+    background-color: @accent-bg-transparent-col;
+    handle-color: @accent-active-col;
+    border-color: @accent-border-col;
+    border-radius: 16px;
 }
 
 #sidebar {
