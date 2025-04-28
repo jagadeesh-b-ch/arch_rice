@@ -39,13 +39,13 @@ return {
 			keymap.set("n", "<leader>D", "<cmd>Telsecope diagnostics bufnr=0<CR>", opts) -- show LSP implementations
 
 			opts.desc = "Show line diagnostics"
-			keymap.set("n", "<leader>d", vim.diagnostics.open_float, opts) -- show LSP implementations
+			keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show LSP implementations
 
 			opts.desc = "Go to previous diagnostic"
-			keymap.set("n", "[d", vim.diagnostics.goto_prev, opts) -- show LSP implementations
+			keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- show LSP implementations
 
 			opts.desc = "Go to next diagnostic"
-			keymap.set("n", "]d", vim.diagnostics.goto_next, opts) -- show LSP implementations
+			keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- show LSP implementations
 
 			opts.desc = "Show documenmarriedtation for what is under cursor"
 			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show LSP implementations
