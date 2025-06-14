@@ -90,5 +90,9 @@ return {
           on_attach = on_attach,
         })
 
+        -- configure QML server
+        require("lspconfig").qmlls.setup {
+          cmd = {"qmlls", "-E"}
+        }
 	end,
 }
