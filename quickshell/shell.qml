@@ -1,6 +1,10 @@
 import Quickshell
+import "modules/background"
 
 Scope {
-    TopBar { }
+  TopBar {
+    id: topbar
+  }
+  Background {}
 }
 

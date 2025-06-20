@@ -18,6 +18,10 @@ Scope {
             ClockWidget {
                 anchors.centerIn: parent
             }
+            WorkspaceWidget {
+              anchors.left: parent.left
+              anchors.verticalCenter: parent.verticalCenter
+            }
         }
     }
 }
