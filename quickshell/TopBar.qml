@@ -1,11 +1,12 @@
 import Quickshell
 import QtQuick
+import "widgets"
 
 Scope {
     Variants {
         model: Quickshell.screens
 
-        PanelWindow {
+        StyledWindow {
             property var modelData
             screen: modelData
 
