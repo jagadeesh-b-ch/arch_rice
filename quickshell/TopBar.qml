@@ -1,6 +1,7 @@
 import Quickshell
 import QtQuick
 import "widgets"
+import "root:/modules/workspaces"
 
 Scope {
     Variants {
@@ -8,16 +9,17 @@ Scope {
 
         StyledWindow {
             property var modelData
+            name: "topBar"
             screen: modelData
+            color: "green"
 
-            anchors {
-                top: true
-                left: true
-                right: true
-            }
+            anchors.top: true
+            anchors.left: true
+            anchors.right: true
             implicitHeight: 30
             ClockWidget {
                 anchors.centerIn: parent
+                anchors.verticalCenter: parent.verticalCenter
             }
             WorkspaceWidget {
               anchors.left: parent.left
