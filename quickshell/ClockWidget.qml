@@ -1,6 +1,6 @@
-import QtQuick
+import "root:/widgets"
 
-Text {
+StyledText {
     text: Time.time
 }
 

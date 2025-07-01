@@ -11,7 +11,6 @@ Scope {
             property var modelData
             name: "topBar"
             screen: modelData
-            color: "green"
 
             anchors.top: true
             anchors.left: true
