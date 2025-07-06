@@ -1,8 +1,8 @@
 import QtQuick
-import "root:/config"
+import "./../config"
 
 Text {
-
+  color: Appearance.color.text
   font.family: Appearance.font.family.sans
-  font.pointSize: Appearance.font.size.small
+  font.pointSize: Appearance.font.size.smaller
 }

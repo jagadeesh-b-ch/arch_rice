@@ -1,5 +1,5 @@
-import "root:/services"
-import "root:/utils"
+import "./../services"
+import "./../utils"
 import Quickshell.Io
 import QtQuick
 
@@ -28,9 +28,9 @@ Image {
     }
 
     onStatusChanged: {
-        if (source == cachePath && status === Image.Error)
+        if (source === cachePath && status === Image.Error)
             source = path;
-        else if (source == path && status === Image.Ready) {
+        else if (source === path && status === Image.Ready) {
             Paths.mkdir(Paths.imagecache);
             const grabPath = cachePath;
             grabToImage(res => res.saveToFile(grabPath));

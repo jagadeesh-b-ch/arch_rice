@@ -1,4 +1,4 @@
-import "root:/widgets"
+import "./../../widgets"
 import Quickshell
 import Quickshell.Wayland
 

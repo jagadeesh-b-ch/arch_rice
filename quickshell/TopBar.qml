@@ -1,7 +1,9 @@
 import Quickshell
 import QtQuick
 import "widgets"
-import "root:/modules/workspaces"
+import "./modules/workspaces"
+import "./config"
+import QtQuick.Layouts
 
 Scope {
     Variants {
@@ -15,16 +17,17 @@ Scope {
             anchors.top: true
             anchors.left: true
             anchors.right: true
-            implicitHeight: 30
+            height: workspaceWid.implicitHeight
             ClockWidget {
+                id: clockWid
                 anchors.centerIn: parent
                 anchors.verticalCenter: parent.verticalCenter
             }
             WorkspaceWidget {
-              anchors.left: parent.left
-              anchors.verticalCenter: parent.verticalCenter
+                id: workspaceWid
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
     }
 }
-

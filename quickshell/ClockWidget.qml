@@ -1,4 +1,4 @@
-import "root:/widgets"
+import "./widgets"
 
 StyledText {
     text: Time.time

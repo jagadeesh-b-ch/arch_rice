@@ -1,8 +1,8 @@
 pragma ComponentBehavior: Bound
 
-import "root:/widgets"
-import "root:/services"
-import "root:/config"
+import "./../../widgets"
+import "./../../services"
+import "./../../config"
 import QtQuick
 
 Item {

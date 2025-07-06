@@ -11,6 +11,13 @@ Singleton {
     readonly property Padding padding: Padding {}
     readonly property Font font: Font {}
     readonly property Anim anim: Anim {}
+    readonly property Color color: Color {}
+
+    component Color: QtObject {
+        readonly property string primary: "#E2725B"
+        readonly property string secondary: "#9DC183"
+        readonly property string text: "#2E2E2E"
+    }
 
     component Rounding: QtObject {
         readonly property int small: 12
