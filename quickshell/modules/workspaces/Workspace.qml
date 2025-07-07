@@ -1,6 +1,7 @@
 import QtQuick
 import "./../../config"
 import "./../../widgets"
+import "./../../services"
 import QtQuick.Layouts
 
 Item {
@@ -8,7 +9,7 @@ Item {
     id: workspaceItem
     // Calculate width and height based on the text size plus padding
     // This ensures the circular background scales with the text
-    property real padding: 12 // Padding around the text
+    property real padding: Appearance.padding.small // Padding around the text
     width: Math.max(workspaceNumber.implicitWidth + padding * 2,
                     workspaceNumber.implicitHeight + padding * 2)
     height: width // Keep it square for a perfect circle
@@ -66,6 +67,7 @@ Item {
         onClicked: {
             console.log("Clicked Workspace:", workspaceNumber.text)
             // Add logic for switching workspaces here
+            Hyprland.dispatch(`workspace ${label}`)
         }
     }
 }

@@ -13,7 +13,7 @@ RowLayout {
 
         delegate: Workspace {
             label: `${modelData.id}`
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
         }
     }
 }
