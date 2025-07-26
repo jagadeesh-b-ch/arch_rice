@@ -1,6 +1,6 @@
 import "./widgets"
 
 StyledText {
-    text: Time.time
+    textValue: Time.time
 }
 

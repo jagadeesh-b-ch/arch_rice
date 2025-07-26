@@ -9,15 +9,10 @@ Singleton {
     readonly property Rounding rounding: Rounding {}
     readonly property Spacing spacing: Spacing {}
     readonly property Padding padding: Padding {}
-    readonly property Font font: Font {}
     readonly property Anim anim: Anim {}
-    readonly property Color color: Color {}
-
-    component Color: QtObject {
-        readonly property string primary: "#E2725B"
-        readonly property string secondary: "#9DC183"
-        readonly property string text: "#2E2E2E"
-    }
+    readonly property FontFamily fontFamily: FontFamily {}
+    readonly property FontSize fontSize: FontSize {}
+    readonly property Defaults defaults: Defaults {}
 
     component Rounding: QtObject {
         readonly property int small: 12
@@ -57,11 +52,6 @@ Singleton {
         readonly property int extraLarge: 28
     }
 
-    component Font: QtObject {
-        readonly property FontFamily family: FontFamily {}
-        readonly property FontSize size: FontSize {}
-    }
-
     component AnimCurves: QtObject {
         readonly property list<real> emphasized: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1]
         readonly property list<real> emphasizedAccel: [0.3, 0, 0.8, 0.15, 1, 1]
@@ -88,4 +78,21 @@ Singleton {
         readonly property AnimCurves curves: AnimCurves {}
         readonly property AnimDurations durations: AnimDurations {}
     }
+
+    component Defaults: QtObject {
+        readonly property int hPadding: root.padding.large
+        readonly property int vPadding: root.padding.small
+        readonly property Color color: Color {}
+        readonly property int rounding: root.rounding.normal
+        readonly property int spacing: root.spacing.smaller
+        readonly property string fontFamily: root.fontFamily.mono
+        readonly property int fontSize: root.fontSize.large
+    }
+
+    component Color: QtObject {
+        readonly property string primary: "#E2725B"
+        readonly property string secondary: "#9DC183"
+        readonly property string text: "#2E2E2E"
+    }
+
 }
