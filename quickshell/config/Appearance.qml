@@ -80,13 +80,13 @@ Singleton {
     }
 
     component Defaults: QtObject {
-        readonly property int hPadding: root.padding.large
+        readonly property int hPadding: root.padding.normal
         readonly property int vPadding: root.padding.small
         readonly property Color color: Color {}
         readonly property int rounding: root.rounding.normal
-        readonly property int spacing: root.spacing.smaller
+        readonly property int spacing: root.spacing.small
         readonly property string fontFamily: root.fontFamily.mono
-        readonly property int fontSize: root.fontSize.large
+        readonly property int fontSize: root.fontSize.small
     }
 
     component Color: QtObject {

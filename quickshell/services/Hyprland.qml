@@ -105,7 +105,6 @@ Singleton {
         readonly property int pid: lastIpcObject.pid
         readonly property int focusHistoryId: lastIpcObject.focusHistoryID
     }
-
     Component {
         id: clientComp
 
