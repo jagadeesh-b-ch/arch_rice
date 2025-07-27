@@ -16,6 +16,11 @@ Singleton {
     readonly property HyprlandMonitor focusedMonitor: Hyprland.focusedMonitor
     readonly property int activeWsId: activeWorkspace?.id ?? 1
     property point cursorPos
+    readonly property var baseWorkspaceIds: [1, 2, 3, 4, 5, 6]
+    readonly property var createdWorkspaceIds: workspaces.values.map(w => w.id)
+    readonly property var finalWorkspaceIds: Array.from(
+                                        new Set([...baseWorkspaceIds, activeWsId, ...createdWorkspaceIds])).filter(
+                                        w => w > 0).sort((a, b) => a - b)
 
     function reload() {
         Hyprland.refreshWorkspaces();
