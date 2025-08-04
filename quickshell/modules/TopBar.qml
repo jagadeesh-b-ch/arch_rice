@@ -45,6 +45,12 @@ Scope {
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
                 }
+
+                RightModules {
+                    id: rightModules
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
         }
     }
