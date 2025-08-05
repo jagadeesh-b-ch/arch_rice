@@ -18,21 +18,18 @@ Singleton {
         running: true
         repeat: true
         onTriggered: {
-            cpuProcess.running = true
             ramProcess.running = true
             tempProcess.running = true
         }
     }
 
-    Process {
-        id: cpuProcess
-        command: ["bash", "-c", "top -bn1 | grep 'Cpu(s)' | awk '{print $2 + $4}'"]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                cpuUsage = parseFloat(text.trim())
-            }
-        }
+    Timer {
+        interval: 500
+        running: true
+        repeat: true
+        onTriggered: statReader.running = true
     }
+
     Process {
         id: ramProcess
         command: ["bash", "-c", "awk '/MemTotal/ { total=$2 } /MemAvailable/ { avail=$2 } END { used=total-avail; printf \"%.2f %.2f %.2f\", used/1024/1024, avail/1024/1024, total/1024/1024 }' /proc/meminfo"]
@@ -56,11 +53,11 @@ Singleton {
     }
     Process {
         id: statReader
-        command: ["cat", "awk '/^cpu / {idle=$5+$6; total=0; for (i=2; i<=NF; i++) total+=$i; print idle,total}' /proc/stat"]
+        command: ["bash", "-c", "awk '/^cpu / {idle=$5+$6; total=0; for (i=2; i<=NF; i++) total+=$i; printf \"%d %d\", idle, total }' /proc/stat"]
 
         stdout: StdioCollector {
             onStreamFinished: {
-                var parts = text.split(",")
+                var parts = text.split(" ")
                 let idle = parseInt(parts[0])
                 let total = parseInt(parts[1])
 

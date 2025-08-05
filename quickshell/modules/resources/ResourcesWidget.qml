@@ -12,7 +12,7 @@ Row {
     }
 
     StyledText {
-        textValue: `${Resources.usedRam}G/${Resources.totalRam}G`
+        textValue: `${Resources.usedRam.toFixed(2)}/${Resources.totalRam.toFixed(2)} G`
     }
 
     StyledText {
