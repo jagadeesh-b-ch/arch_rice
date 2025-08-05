@@ -3,19 +3,20 @@ import "./../../config"
 import "./../../widgets"
 import "./../../services"
 
-Row {
+Item {
     id: root
-    spacing: Appearance.defaults.spacing
+    property string cpu: `${Resources.cpuUsage}%`
+    property string ram: `${Resources.usedRam.toFixed(
+                             2)}/${Resources.totalRam.toFixed(2)} G`
+    property string temp: `${Resources.cpuTemp}\u00B0C`
+
+    implicitHeight: resources.height
+    implicitWidth: resources.width
 
     StyledText {
-        textValue: `${Resources.cpuUsage}%`
+        id: resources
+        textValue: `${root.cpu}    ${root.ram}    ${root.temp}`
+        onClicked: Hyprland.dispatch("exec [tag +bar_launch] alacritty -e btop")
     }
 
-    StyledText {
-        textValue: `${Resources.usedRam.toFixed(2)}/${Resources.totalRam.toFixed(2)} G`
-    }
-
-    StyledText {
-        textValue: `${Resources.cpuTemp}\u00B0C`
-    }
 }
