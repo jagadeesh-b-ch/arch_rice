@@ -5,9 +5,17 @@ import "./../../config"
 import "./../../utils"
 import "./../../widgets"
 
-StyledText {
-    textValue: Icons.osIcon
-    onClicked: launcherProcess.running = true
+Item {
+    width: launcherView.width
+    height: launcherView.height
+    StyledView {
+        id: launcherView
+        onClicked: launcherProcess.running = true
+
+        content: StyledTextPadded {
+            text: Icons.osIcon
+        }
+    }
 
     Process {
         id: launcherProcess

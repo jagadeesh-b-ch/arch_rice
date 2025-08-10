@@ -11,27 +11,15 @@ Item {
     property int workspaceId
     property int activeWorkspaceId
 
-    width: workspaceComponent.implicitWidth
-    height: workspaceComponent.implicitHeight
+    implicitWidth: workspaceComponent.width
+    implicitHeight: workspaceComponent.height
 
-    Component {
-        id: activeComponent
-        HighlightedText {
-            textValue: workspaceId
-        }
-    }
-
-    Component {
-        id: nonActiveComponent
-        StyledText {
-            textValue: workspaceId
-            onClicked: Hyprland.dispatch(`workspace ${workspaceId}`)
-        }
-    }
-
-    Loader {
+    StyledView {
         id: workspaceComponent
-        sourceComponent: workspaceId == activeWorkspaceId ? activeComponent : nonActiveComponent
+        StyledTextPadded {
+            text: workspaceId
+        }
+        active: workspaceId == activeWorkspaceId
+        onClicked: Hyprland.dispatch(`workspace ${workspaceId}`)
     }
-
 }

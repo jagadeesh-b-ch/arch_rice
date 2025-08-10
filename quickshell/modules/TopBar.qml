@@ -21,17 +21,20 @@ Scope {
             anchors.left: true
             anchors.right: true
 
-            property int margin: Appearance.defaults.hPadding
             implicitHeight: topBarContainer.implicitHeight
             Item {
                 id: topBarContainer
                 implicitHeight: Math.max(
                                     clockWid.implicitHeight,
-                                    leftModules.implicitHeight) + (2 * margin)
+                                    leftModules.implicitHeight,
+                                    rightModules.implicitHeight) + (2 * Appearance.defaults.vPadding)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
-                anchors.margins: margin
+                anchors.leftMargin: Appearance.defaults.hPadding
+                anchors.rightMargin: Appearance.defaults.hPadding
+                anchors.topMargin: Appearance.defaults.vPadding
+                anchors.bottomMargin: Appearance.defaults.vPadding
                 anchors.verticalCenter: parent.verticalCenter
 
                 ClockWidget {
