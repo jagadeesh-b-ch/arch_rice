@@ -41,6 +41,7 @@ Singleton {
         readonly property string sans: "IBM Plex Sans"
         readonly property string mono: "JetBrains Mono NF"
         readonly property string material: "Material Symbols Rounded"
+        readonly property string nerd: "Symbols Nerd Font Mono"
     }
 
     component FontSize: QtObject {
