@@ -8,6 +8,7 @@ import "./../../widgets"
 Item {
     width: launcherView.width
     height: launcherView.height
+
     InteractiveView {
         id: launcherView
         onClicked: launcherProcess.running = true

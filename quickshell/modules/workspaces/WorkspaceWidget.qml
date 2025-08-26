@@ -9,12 +9,9 @@ StyledView {
     RowLayout {
         id: workspaceLayout
         spacing: Appearance.defaults.spacing
-
         Repeater {
             model: Hyprland.finalWorkspaceIds
-
             delegate: Workspace {
-
                 id: workspaceNumber
                 workspaceId: modelData
                 activeWorkspaceId: Hyprland.activeWsId

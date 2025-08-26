@@ -30,8 +30,9 @@ Singleton {
     }
 
     component Padding: QtObject {
-        readonly property int small: 5
-        readonly property int smaller: 7
+        readonly property int smallest: 2
+        readonly property int small: 4
+        readonly property int smaller: 6
         readonly property int normal: 10
         readonly property int larger: 12
         readonly property int large: 15

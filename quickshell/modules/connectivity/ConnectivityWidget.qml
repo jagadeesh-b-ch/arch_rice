@@ -5,7 +5,6 @@ import "./../../widgets"
 
 StyledView {
     RowLayout {
-
         id: connectivity
         spacing: 0
         WifiControl {}
