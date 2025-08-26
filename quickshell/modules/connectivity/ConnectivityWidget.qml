@@ -3,9 +3,12 @@ import QtQuick.Layouts
 import "./../../config"
 import "./../../widgets"
 
-RowLayout {
-    id: connectivity
-    spacing: 0
-    WifiControl {}
-    BluetoothControl {}
+StyledView {
+    RowLayout {
+
+        id: connectivity
+        spacing: 0
+        WifiControl {}
+        BluetoothControl {}
+    }
 }

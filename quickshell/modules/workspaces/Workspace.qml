@@ -14,7 +14,7 @@ Item {
     implicitWidth: workspaceComponent.width
     implicitHeight: workspaceComponent.height
 
-    StyledView {
+    InteractiveView {
         id: workspaceComponent
         StyledTextPadded {
             text: workspaceId

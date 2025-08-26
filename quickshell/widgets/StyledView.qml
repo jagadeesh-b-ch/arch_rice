@@ -13,20 +13,11 @@ Rectangle {
 
     property bool hovered: false
 
-    signal clicked()
+    signal clicked
     default property alias content: contentLoader.sourceComponent
 
     Loader {
         id: contentLoader
     }
 
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        acceptedButtons: Qt.NoButton
-        onEntered: hovered = true
-        onExited: hovered = false
-        onClicked: root.clicked()
-    }
 }

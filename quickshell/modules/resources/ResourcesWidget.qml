@@ -4,7 +4,7 @@ import "./../../config"
 import "./../../widgets"
 import "./../../services"
 
-StyledView {
+InteractiveView {
     id: root
     property string cpu: `${Resources.cpuUsage}%`
     property string ram: `${Resources.usedRam.toFixed(

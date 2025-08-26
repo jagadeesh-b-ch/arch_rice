@@ -4,7 +4,7 @@ import "./../../widgets"
 import "./../../utils"
 import "./../../services"
 
-StyledView {
+InteractiveView {
 	onClicked: Hyprland.dispatch("exec [tag +bar_launch] alacritty -e nmtui")
 	MaterialIconPadded {
 		text: Network.active ? Icons.getNetworkIcon(Network.active.strength

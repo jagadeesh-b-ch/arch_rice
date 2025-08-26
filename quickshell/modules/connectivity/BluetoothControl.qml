@@ -3,7 +3,7 @@ import "./../../config"
 import "./../../widgets"
 import "./../../services"
 
-StyledView {
+InteractiveView {
     z: 10
     onClicked: Hyprland.dispatch("exec [tag +bar_launch] alacritty -e bluetui")
     MaterialIconPadded {
