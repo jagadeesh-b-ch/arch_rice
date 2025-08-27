@@ -11,5 +11,4 @@ InteractiveView {
 													?? 0) : "wifi_off"
 		anchors.verticalCenter: parent.verticalCenter
 	}
-	z: 10
 }

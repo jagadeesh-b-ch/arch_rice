@@ -2,6 +2,7 @@ import QtQuick 2.15
 import "./../config"
 import "./resources"
 import "./connectivity"
+import "./power"
 
 Row {
     id: root
@@ -14,6 +15,10 @@ Row {
 
     ResourcesWidget {
         id: resourcesWidget
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    PowerProfile {
         anchors.verticalCenter: parent.verticalCenter
     }
 }

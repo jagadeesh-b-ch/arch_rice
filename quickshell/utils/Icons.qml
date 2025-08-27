@@ -2,6 +2,7 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Io
+import Quickshell.Services.UPower
 
 Singleton {
     id: root
@@ -190,6 +191,19 @@ Singleton {
         if (icon.includes("phone"))
             return "smartphone";
         return "bluetooth";
+    }
+
+    function getPowerProfileIcon(powerProfile: int): string {
+        if (powerProfile === PowerProfile.Performance) {
+            return "\uEB9B"
+        }
+        if (powerProfile === PowerProfile.Balanced) {
+            return "\uEAF6"
+        }
+        if (powerProfile === PowerProfile.PowerSaver) {
+            return "\uF15F"
+        }
+        return "\uEB8B"
     }
 
     function getWeatherIcon(code: string): string {

@@ -24,10 +24,10 @@ Scope {
             implicitHeight: topBarContainer.implicitHeight
             Item {
                 id: topBarContainer
-                implicitHeight: Math.max(
-                                    clockWid.implicitHeight,
-                                    leftModules.implicitHeight,
-                                    rightModules.implicitHeight) + (2 * Appearance.defaults.vPadding)
+                implicitHeight: Math.max(clockWid.implicitHeight,
+                                         leftModules.implicitHeight,
+                                         rightModules.implicitHeight)
+                                + (2 * Appearance.defaults.vPadding)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -37,10 +37,25 @@ Scope {
                 anchors.bottomMargin: Appearance.defaults.vPadding
                 anchors.verticalCenter: parent.verticalCenter
 
-                ClockWidget {
-                    id: clockWid
+                Row {
+                    id: centerModules
                     anchors.centerIn: parent
                     anchors.verticalCenter: parent.verticalCenter
+
+                    spacing: Appearance.defaults.spacing
+
+                    ClockWidget {
+                        id: clockWid
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    InteractiveView {
+                        spacing: Appearance.padding.smallest
+                        anchors.verticalCenter: parent.verticalCenter
+                        MaterialIconPadded {
+                            text: "\uEB8B"
+                        }
+                    }
                 }
 
                 LeftModules {
