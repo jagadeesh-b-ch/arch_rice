@@ -11,6 +11,7 @@ Item {
 
     InteractiveView {
         id: launcherView
+        spacing: Appearance.padding.smallest
         onClicked: launcherProcess.running = true
 
         content: StyledTextPadded {

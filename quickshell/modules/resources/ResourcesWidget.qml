@@ -4,44 +4,40 @@ import "./../../config"
 import "./../../widgets"
 import "./../../services"
 
-StyledView {
+InteractiveView {
     id: root
+
     property string cpu: `${Resources.cpuUsage}%`
-    property string ram: `${Resources.usedRam.toFixed(
-                             2)}/${Resources.totalRam.toFixed(2)} G`
+    property string ram: `${Resources.usedRam.toFixed(2)}/${Resources.totalRam.toFixed(2)} G`
     property string temp: `${Resources.cpuTemp}\u00B0C`
 
-    RowLayout {
-        width: resourceView.width
-        InteractiveView {
-            id: resourceView
-            onClicked: Hyprland.dispatch(
-                           "exec [tag +bar_launch] alacritty -e btop")
-            Item {
-                implicitWidth: resources.implicitWidth + (2 * Appearance.defaults.hPadding)
-                implicitHeight: resources.implicitHeight + (2 * Appearance.defaults.vPadding)
-                RowLayout {
-                    id: resources
+    spacing: Appearance.padding.smallest
 
-                    spacing: Appearance.defaults.spacing
+    onClicked: Hyprland.dispatch("exec [tag +bar_launch] alacritty -e btop")
 
-                    anchors.centerIn: parent
+    content: Item {
+        implicitWidth: resources.implicitWidth + (2 * Appearance.defaults.hPadding)
+        implicitHeight: resources.implicitHeight + (2 * Appearance.defaults.vPadding)
+        RowLayout {
+            id: resources
 
-                    StyledText {
-                        id: cpuText
-                        text: `${root.cpu}`
-                    }
+            spacing: Appearance.defaults.spacing
 
-                    StyledText {
-                        id: ramText
-                        text: `${root.ram}`
-                    }
+            anchors.centerIn: parent
 
-                    StyledText {
-                        id: tempText
-                        text: `${root.temp}`
-                    }
-                }
+            StyledText {
+                id: cpuText
+                text: `${root.cpu}`
+            }
+
+            StyledText {
+                id: ramText
+                text: `${root.ram}`
+            }
+
+            StyledText {
+                id: tempText
+                text: `${root.temp}`
             }
         }
     }
