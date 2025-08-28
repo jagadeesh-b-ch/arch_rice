@@ -18,7 +18,7 @@ Row {
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    PowerProfile {
+    PowerWidget {
         anchors.verticalCenter: parent.verticalCenter
     }
 }

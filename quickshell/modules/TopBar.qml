@@ -53,7 +53,7 @@ Scope {
                         spacing: Appearance.padding.smallest
                         anchors.verticalCenter: parent.verticalCenter
                         MaterialIconPadded {
-                            text: "\uEB8B"
+                            text: "\uE8AC"
                         }
                     }
                 }

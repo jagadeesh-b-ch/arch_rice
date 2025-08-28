@@ -5,7 +5,6 @@ import "./../../utils"
 import "./../../config"
 
 InteractiveView {
-    spacing: Appearance.padding.smallest
     onClicked: {
         if (PowerProfiles.profile === PowerProfile.Balanced) {
             PowerProfiles.profile = PowerProfile.PowerSaver

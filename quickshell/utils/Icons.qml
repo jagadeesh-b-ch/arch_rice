@@ -206,6 +206,61 @@ Singleton {
         return "\uEB8B"
     }
 
+    function getBatteryIcon(percentage: int, isCharging: bool): string {
+        if (percentage >= 95) {
+            return "battery_full"
+        }
+        if (percentage >= 80) {
+            if (isCharging) {
+                return "battery_charging_90"
+            } else {
+                return "battery_6_bar"
+            }
+        }
+        if (percentage >= 65) {
+            if (isCharging) {
+                return "battery_charging_80"
+            } else {
+                return "battery_5_bar"
+            }
+        }
+        if (percentage >= 50) {
+            if (isCharging) {
+                return "battery_charging_60"
+            } else {
+                return "battery_4_bar"
+            }
+        }
+        if (percentage >= 35) {
+            if (isCharging) {
+                return "battery_charging_50"
+            } else {
+                return "battery_3_bar"
+            }
+        }
+        if (percentage >= 20) {
+            if (isCharging) {
+                return "battery_charging_30"
+            } else {
+                return "battery_2_bar"
+            }
+        }
+        if (percentage >= 5) {
+            if (isCharging) {
+                return "battery_charging_20"
+            } else {
+                return "battery_1_bar"
+            }
+        }
+        if (percentage >= 0) {
+            if (isCharging) {
+                return "battery_charging_full"
+            } else {
+                return "battery_0_bar"
+            }
+        }
+    }
+
     function getWeatherIcon(code: string): string {
         if (weatherIcons.hasOwnProperty(code))
             return weatherIcons[code];
