@@ -3,18 +3,24 @@ import "./../config"
 import "./resources"
 import "./connectivity"
 import "./power"
+import "./output"
 
 Row {
     id: root
     spacing: Appearance.defaults.spacing
 
-    ConnectivityWidget {
-        id: connectivityWidget
+    ResourcesWidget {
+        id: resourcesWidget
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    ResourcesWidget {
-        id: resourcesWidget
+    OutputWidget {
+        id: outputWidget
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    ConnectivityWidget {
+        id: connectivityWidget
         anchors.verticalCenter: parent.verticalCenter
     }
 

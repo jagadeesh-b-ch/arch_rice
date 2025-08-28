@@ -261,6 +261,29 @@ Singleton {
         }
     }
 
+    function getVolumeIcon(percentage: int): string {
+        if (percentage >= 75) {
+            return "volume_up"
+        }
+        if (percentage >= 25) {
+            return "volume_down"
+        }
+        if (percentage > 0) {
+            return "volume_mute"
+        }
+        return "volume_off"
+    }
+
+    function getBrightnessIcon(percentage: int): string {
+        if (percentage >= 75) {
+            return "brightness_7"
+        }
+        if (percentage >= 25) {
+            return "brightness_6"
+        }
+        return "brightness_5"
+    }
+
     function getWeatherIcon(code: string): string {
         if (weatherIcons.hasOwnProperty(code))
             return weatherIcons[code];

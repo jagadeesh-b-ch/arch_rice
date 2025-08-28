@@ -37,25 +37,10 @@ Scope {
                 anchors.bottomMargin: Appearance.defaults.vPadding
                 anchors.verticalCenter: parent.verticalCenter
 
-                Row {
-                    id: centerModules
+                ClockWidget {
+                    id: clockWid
                     anchors.centerIn: parent
                     anchors.verticalCenter: parent.verticalCenter
-
-                    spacing: Appearance.defaults.spacing
-
-                    ClockWidget {
-                        id: clockWid
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-
-                    InteractiveView {
-                        spacing: Appearance.padding.smallest
-                        anchors.verticalCenter: parent.verticalCenter
-                        MaterialIconPadded {
-                            text: "\uE8AC"
-                        }
-                    }
                 }
 
                 LeftModules {
