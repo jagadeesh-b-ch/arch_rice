@@ -24,8 +24,7 @@ Scope {
             implicitHeight: topBarContainer.implicitHeight
             Item {
                 id: topBarContainer
-                implicitHeight: Math.max(clockWid.implicitHeight,
-                                         leftModules.implicitHeight,
+                implicitHeight: Math.max(leftModules.implicitHeight,
                                          rightModules.implicitHeight)
                                 + (2 * Appearance.defaults.vPadding)
                 anchors.left: parent.left
@@ -37,11 +36,6 @@ Scope {
                 anchors.bottomMargin: Appearance.defaults.vPadding
                 anchors.verticalCenter: parent.verticalCenter
 
-                ClockWidget {
-                    id: clockWid
-                    anchors.centerIn: parent
-                    anchors.verticalCenter: parent.verticalCenter
-                }
 
                 LeftModules {
                     id: leftModules

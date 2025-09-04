@@ -8,7 +8,8 @@ InteractiveView {
     id: root
 
     property string cpu: `${Resources.cpuUsage}%`
-    property string ram: `${Resources.usedRam.toFixed(2)}/${Resources.totalRam.toFixed(2)} G`
+    property string ram: `${Resources.usedRam.toFixed(
+                             2)}/${Resources.totalRam.toFixed(2)} G`
     property string temp: `${Resources.cpuTemp}\u00B0C`
 
     spacing: Appearance.padding.smallest
@@ -25,19 +26,59 @@ InteractiveView {
 
             anchors.centerIn: parent
 
-            StyledText {
-                id: cpuText
-                text: `${root.cpu}`
+            Item {
+                width: cpuText.width + cpuIcon.width + 1
+                height: Math.max(cpuText.height, cpuIcon.height)
+                StyledText {
+                    id: cpuText
+                    text: `${root.cpu}`
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                MaterialIcon {
+                    id: cpuIcon
+                    text: "memory"
+                    anchors.leftMargin: 1
+                    anchors.left: cpuText.right
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
-            StyledText {
-                id: ramText
-                text: `${root.ram}`
+            Item {
+                width: ramText.width + ramIcon.width + 2
+                height: Math.max(ramText.height, ramIcon.height)
+                StyledText {
+                    id: ramText
+                    text: `${root.ram}`
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                MaterialIcon {
+                    id: ramIcon
+                    text: "memory_alt"
+                    anchors.leftMargin: 2
+                    anchors.left: ramText.right
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
-            StyledText {
-                id: tempText
-                text: `${root.temp}`
+            Item {
+                width: tempText.width + tempIcon.width + 1
+                height: Math.max(tempText.height, tempIcon.height)
+                StyledText {
+                    id: tempText
+                    text: `${root.temp}`
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                MaterialIcon {
+                    id: tempIcon
+                    text: "device_thermostat"
+                    anchors.leftMargin: 1
+                    anchors.left: tempText.right
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
         }
     }

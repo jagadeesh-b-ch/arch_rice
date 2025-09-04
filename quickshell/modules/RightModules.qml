@@ -14,13 +14,13 @@ Row {
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    OutputWidget {
-        id: outputWidget
+    ConnectivityWidget {
+        id: connectivityWidget
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    ConnectivityWidget {
-        id: connectivityWidget
+    OutputWidget {
+        id: outputWidget
         anchors.verticalCenter: parent.verticalCenter
     }
 
