@@ -8,6 +8,7 @@ Rectangle {
     property bool active: false
     property bool hovered: false
     signal clicked
+    signal hover(bool hovered)
     default property alias content: contentLoader.sourceComponent
 
     width: interactiveView.width + (2 * spacing)
@@ -39,8 +40,14 @@ Rectangle {
             cursorShape: Qt.PointingHandCursor
             preventStealing: true
             propagateComposedEvents: true
-            onEntered: hovered = true
-            onExited: hovered = false
+            onEntered: {
+                hovered = true
+                root.hover(true)
+            }
+            onExited: {
+                hovered = false
+                root.hover(false)
+            }
             onClicked: root.clicked()
         }
     }

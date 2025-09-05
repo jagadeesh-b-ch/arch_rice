@@ -27,7 +27,7 @@ InteractiveView {
             anchors.centerIn: parent
 
             Item {
-                width: cpuText.width + cpuIcon.width + 1
+                width: cpuText.width + cpuIcon.width + 4
                 height: Math.max(cpuText.height, cpuIcon.height)
                 StyledText {
                     id: cpuText
@@ -40,6 +40,7 @@ InteractiveView {
                     id: cpuIcon
                     text: "memory"
                     anchors.leftMargin: 1
+                    anchors.rightMargin: 3
                     anchors.left: cpuText.right
                     anchors.verticalCenter: parent.verticalCenter
                 }
