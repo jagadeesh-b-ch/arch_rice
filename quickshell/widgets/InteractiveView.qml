@@ -28,7 +28,7 @@ Rectangle {
 
         radius: Appearance.defaults.rounding
         color: (hovered
-                || active) ? "#4CAF50" : Appearance.defaults.color.secondary
+                || active) ? Appearance.defaults.color.primary  : Appearance.defaults.color.secondary
 
         Loader {
             id: contentLoader

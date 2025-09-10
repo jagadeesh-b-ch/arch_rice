@@ -6,7 +6,7 @@ import "./../config"
 PanelWindow {
     id: stylePanel
     required property string name
-    property string bgColor: Appearance.defaults.color.primary
+    property string bgColor: "#E2725B"
     color: "transparent"
     WlrLayershell.namespace: `archie-${name}`
     Rectangle {

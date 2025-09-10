@@ -93,7 +93,7 @@ Singleton {
     }
 
     component Color: QtObject {
-        readonly property string primary: "#E2725B"
+        readonly property string primary: "#4CAF50"
         readonly property string secondary: "#9DC183"
         readonly property string text: "#2E2E2E"
     }

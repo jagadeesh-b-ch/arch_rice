@@ -27,26 +27,26 @@ Item {
             }
         }
         onClicked: Hyprland.dispatch("exec [tag +bar_launch] pwvucontrol")
-        onHover: (isHovered) => { root.hovered = isHovered }
+        onHover: isHovered => {
+                     root.hovered = isHovered
+                     if (root.hovered) {
+                         hoverTimer.running = true
+                     }
+                 }
     }
 
-    PopOutWindow {
-        anchor.item: root
-        anchor.rect.x: -50
-        anchor.rect.y: volumeView.height
-        anchor.margins.top: 2 * Appearance.defaults.vPadding
-        visible: hovered
-        Slider {
-            id: slider
-            anchors.fill: parent
-            anchors.margins: 8
-            from: 0.0
-            to: 1.0
-            value: 0.5
-            onMoved: {
-                console.log("Slider value: ", value)
-            }
-        }
+    Timer {
+        id: hoverTimer
+        running: false
+        interval: 3000
     }
 
+    HorizontalSlider {
+        id: volumeSlider
+        visible: hovered || volumeSlider.sliderHover
+                 || hoverTimer.running === true
+
+        hostWidth: volumeView.width
+        hostHeight: volumeView.height
+    }
 }
