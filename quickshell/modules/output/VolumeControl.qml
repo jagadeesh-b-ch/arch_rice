@@ -13,17 +13,19 @@ Item {
     width: volumeView.width
     height: volumeView.height
 
+    property int readableVolume: (Audio.volume * 100)
+
     InteractiveView {
         id: volumeView
         RowLayout {
             spacing: Appearance.padding.smallest
             StyledTextPadded {
-                text: Audio.volume
+                text: readableVolume
                 rightPadding: 0
             }
 
             MaterialIconPadded {
-                text: Icons.getVolumeIcon(Audio.volume)
+                text: Icons.getVolumeIcon(readableVolume)
                 leftPadding: 0
             }
         }
@@ -38,6 +40,10 @@ Item {
     HorizontalSlider {
         id: volumeSlider
 
+        slideValue: Audio.volume
+        onSlide: newVolume => {
+                     Audio.setVolume(newVolume)
+                 }
         hostWidth: volumeView.width
         hostHeight: volumeView.height
     }

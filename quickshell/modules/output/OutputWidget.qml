@@ -1,8 +1,11 @@
+import Quickshell
 import QtQuick 2.15
 import QtQuick.Layouts
 import "./../../widgets"
 
 StyledView {
+    id: root
+    property ShellScreen currentScreen
     Item {
         implicitWidth: volumeControl.width + brightnessControl.width
         implicitHeight: Math.max(volumeControl.height, brightnessControl.height)
@@ -13,6 +16,7 @@ StyledView {
         }
         BrightnessControl {
             id: brightnessControl
+            currentScreen: root.currentScreen
             anchors.left: volumeControl.right
             anchors.verticalCenter: parent.verticalCenter
         }

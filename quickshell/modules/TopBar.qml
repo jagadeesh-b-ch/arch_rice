@@ -47,6 +47,7 @@ Scope {
                     id: rightModules
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
+                    currentScreen: topBar.screen
                 }
             }
         }

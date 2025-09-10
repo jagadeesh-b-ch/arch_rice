@@ -12,6 +12,9 @@ PopOutWindow {
     implicitHeight: hostHeight + (2 * vPadding)
     implicitWidth: (horizontalScale * hostWidth) + (2 * hPadding)
 
+    property real slideValue: 0
+    signal slide(real newValue)
+
     Slider {
         id: slider
         anchors.centerIn: parent
@@ -19,7 +22,7 @@ PopOutWindow {
         anchors.fill: parent
         from: 0.0
         to: 1.0
-        value: 0.5
+        value: slideValue
 
         handle: Rectangle {
             color: Appearance.defaults.color.primary
@@ -53,7 +56,7 @@ PopOutWindow {
         }
 
         onMoved: {
-            console.log("Slider value: ", value)
+            sliderPopout.slide(value)
         }
     }
 }
