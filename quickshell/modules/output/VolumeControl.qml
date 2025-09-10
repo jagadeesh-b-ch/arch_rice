@@ -9,9 +9,10 @@ import "./../../services"
 
 Item {
     id: root
+
     width: volumeView.width
     height: volumeView.height
-    property bool hovered: false
+
     InteractiveView {
         id: volumeView
         RowLayout {
@@ -28,23 +29,14 @@ Item {
         }
         onClicked: Hyprland.dispatch("exec [tag +bar_launch] pwvucontrol")
         onHover: isHovered => {
-                     root.hovered = isHovered
-                     if (root.hovered) {
-                         hoverTimer.running = true
+                     if (isHovered) {
+                         PopOutManager.show(volumeSlider)
                      }
                  }
     }
 
-    Timer {
-        id: hoverTimer
-        running: false
-        interval: 3000
-    }
-
     HorizontalSlider {
         id: volumeSlider
-        visible: hovered || volumeSlider.sliderHover
-                 || hoverTimer.running === true
 
         hostWidth: volumeView.width
         hostHeight: volumeView.height

@@ -3,14 +3,13 @@ import QtQuick.Layouts
 import "./../../widgets"
 import "./../../config"
 import "./../../utils"
+import "./../../services"
 
 Item {
     id: root
 
     width: brightnessView.width
     height: brightnessView.height
-
-    property bool hovered: false
 
     InteractiveView {
         id: brightnessView
@@ -26,22 +25,14 @@ Item {
             }
         }
         onHover: isHovered => {
-                     root.hovered = isHovered
-                     if (root.hovered) {
-                         hoverTimer.running = true
+                     if (isHovered) {
+                         PopOutManager.show(brightnessSlider)
                      }
                  }
     }
 
-    Timer {
-        id: hoverTimer
-        running: false
-        interval: 3000
-    }
-
     HorizontalSlider {
         id: brightnessSlider
-        visible: hovered || brightnessSlider.sliderHover || hoverTimer.running === true
 
         hostWidth: brightnessView.width
         hostHeight: brightnessView.height
