@@ -15,6 +15,14 @@ Item {
 
     property int readableVolume: (Audio.volume * 100)
 
+    FontMetrics {
+        id: metrics
+        font: Qt.font({
+                          "family": Appearance.defaults.fontFamily,
+                          "pixelSize": Appearance.defaults.fontSize
+                      })
+    }
+
     InteractiveView {
         id: volumeView
         RowLayout {

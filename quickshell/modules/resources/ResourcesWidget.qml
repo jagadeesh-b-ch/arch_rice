@@ -21,9 +21,7 @@ InteractiveView {
         implicitHeight: resources.implicitHeight + (2 * Appearance.defaults.vPadding)
         RowLayout {
             id: resources
-
             spacing: Appearance.defaults.spacing
-
             anchors.centerIn: parent
 
             Item {
@@ -32,6 +30,7 @@ InteractiveView {
                 StyledText {
                     id: cpuText
                     text: `${root.cpu}`
+                    width: StyledFontMetric.widthForCharacters(30)
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -82,5 +81,12 @@ InteractiveView {
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        console.log("Width for 3 characters: " + StyledFontMetric.widthForCharacters(
+                        3))
+        console.log("Width for 30 characters: " + StyledFontMetric.widthForCharacters(
+                        30))
     }
 }
