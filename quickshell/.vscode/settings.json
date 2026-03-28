@@ -1,0 +1,5 @@
+{
+  "qml.env": {
+    "QML_IMPORT_PATH": "/usr/lib/qt6/modules"
+  }
+}

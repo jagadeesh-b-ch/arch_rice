@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "tasks": [
+    {
+      "label": "Run QML App",
+      "type": "shell",
+      "command": "/usr/lib/qt6/bin/qmlscene",
+      "args": ["${workspaceFolder}/shell.qml"],
+      "options": {
+        "env": {
+          "QML_IMPORT_PATH": "/usr/lib/qt6/modules"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
