@@ -1,9 +1,20 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    explorer = {
-      hidden = true, -- Show hidden files (dotfiles)
-      ignored = true, -- Show git-ignored files
+    picker = {
+      sources = {
+        explorer = {
+          cwd = vim.fn.getcwd(),
+          win = {
+            list = {
+              keys = {
+                ["<BS>"] = "", -- Disables Backspace (Go up)
+                ["h"] = "explorer_close_dir", -- Changes 'h' to only close folders, not go up
+              },
+            },
+          },
+        },
+      },
     },
   },
 }

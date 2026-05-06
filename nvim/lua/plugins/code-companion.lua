@@ -49,6 +49,7 @@ return {
     },
   },
   keys = {
+    { "<Leader>a", "", desc = "ai" },
     { "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle CodeCompanion Chat", mode = { "n", "v" } },
     { "<Leader>aa", "<cmd>CodeCompanionCLI Ask<cr>", desc = "Open CodeCompanion CLI", mode = "n" },
   },
