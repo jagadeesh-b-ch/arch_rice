@@ -44,10 +44,13 @@ Singleton {
     }
     Process {
         id: tempProcess
-        command: ["bash", "-c", "cat /sys/class/thermal/thermal_zone0/temp"]
+        command: ["bash", Quickshell.filePath("../utils/scripts/find-cpu-temp.sh")]
         stdout: StdioCollector {
             onStreamFinished: {
-                cpuTemp = parseInt(text.trim()) / 1000
+                const raw = text.trim();
+                const val = parseInt(raw);
+                if (!isNaN(val) && val > 0)
+                    cpuTemp = val / 1000;
             }
         }
     }

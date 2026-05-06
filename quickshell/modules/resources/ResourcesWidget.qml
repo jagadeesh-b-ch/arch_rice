@@ -24,69 +24,42 @@ InteractiveView {
             spacing: Appearance.defaults.spacing
             anchors.centerIn: parent
 
-            Item {
-                width: cpuText.width + cpuIcon.width + 4
-                height: Math.max(cpuText.height, cpuIcon.height)
+            Row {
+                spacing: 1
                 StyledText {
                     id: cpuText
                     text: `${root.cpu}`
-                    width: StyledFontMetric.widthForCharacters(30)
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
                 }
-
                 MaterialIcon {
                     id: cpuIcon
                     text: "memory"
-                    anchors.leftMargin: 1
-                    anchors.rightMargin: 3
-                    anchors.left: cpuText.right
-                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
 
-            Item {
-                width: ramText.width + ramIcon.width + 2
-                height: Math.max(ramText.height, ramIcon.height)
+            Row {
+                spacing: 1
                 StyledText {
                     id: ramText
                     text: `${root.ram}`
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
                 }
                 MaterialIcon {
                     id: ramIcon
                     text: "memory_alt"
-                    anchors.leftMargin: 2
-                    anchors.left: ramText.right
-                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
 
-            Item {
-                width: tempText.width + tempIcon.width + 1
-                height: Math.max(tempText.height, tempIcon.height)
+            Row {
+                spacing: 1
                 StyledText {
                     id: tempText
                     text: `${root.temp}`
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
                 }
                 MaterialIcon {
                     id: tempIcon
                     text: "device_thermostat"
-                    anchors.leftMargin: 1
-                    anchors.left: tempText.right
-                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }
     }
 
-    Component.onCompleted: {
-        console.log("Width for 3 characters: " + StyledFontMetric.widthForCharacters(
-                        3))
-        console.log("Width for 30 characters: " + StyledFontMetric.widthForCharacters(
-                        30))
-    }
 }
