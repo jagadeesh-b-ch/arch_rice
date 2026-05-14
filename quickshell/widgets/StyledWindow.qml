@@ -3,6 +3,7 @@ import Quickshell.Wayland
 import QtQuick
 import "./../config"
 
+// @suppress uncreatable-type
 PanelWindow {
     id: stylePanel
     required property string name

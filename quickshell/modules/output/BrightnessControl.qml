@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import QtQuick 2.15
 import QtQuick.Layouts
@@ -21,28 +23,29 @@ Item {
         RowLayout {
             spacing: Appearance.padding.smallest
             StyledTextPadded {
-                text: readableBrightness
+                text: root.readableBrightness
                 rightPadding: 0
             }
             MaterialIconPadded {
-                text: Icons.getBrightnessIcon(readableBrightness)
+                text: Icons.getBrightnessIcon(root.readableBrightness)
                 leftPadding: 0
             }
         }
         onHover: isHovered => {
-                     if (isHovered) {
-                         PopOutManager.show(brightnessSlider)
-                     }
-                 }
+            if (isHovered) {
+                PopOutManager.show(brightnessSlider);
+            }
+        }
     }
 
     HorizontalSlider {
         id: brightnessSlider
+        anchor.item: root
 
-        slideValue: monitor.brightness
+        slideValue: root.monitor.brightness
         onSlide: newBrightness => {
-                     monitor.setBrightness(newBrightness)
-                 }
+            root.monitor.setBrightness(newBrightness);
+        }
 
         hostWidth: brightnessView.width
         hostHeight: brightnessView.height

@@ -1,7 +1,8 @@
+pragma ComponentBehavior: Bound
+
+import Quickshell
 import QtQuick 2.15
 import QtQuick.Layouts
-import QtQuick.Controls
-import Quickshell.Services.Pipewire
 import "./../../widgets"
 import "./../../utils"
 import "./../../config"
@@ -18,9 +19,9 @@ Item {
     FontMetrics {
         id: metrics
         font: Qt.font({
-                          "family": Appearance.defaults.fontFamily,
-                          "pixelSize": Appearance.defaults.fontSize
-                      })
+            "family": Appearance.defaults.fontFamily,
+            "pixelSize": Appearance.defaults.fontSize
+        })
     }
 
     InteractiveView {
@@ -28,30 +29,30 @@ Item {
         RowLayout {
             spacing: Appearance.padding.smallest
             StyledTextPadded {
-                text: readableVolume
+                text: root.readableVolume
                 rightPadding: 0
             }
 
             MaterialIconPadded {
-                text: Icons.getVolumeIcon(readableVolume)
+                text: Icons.getVolumeIcon(root.readableVolume)
                 leftPadding: 0
             }
         }
         onClicked: Hyprland.dispatch("exec [tag +bar_launch] pwvucontrol")
         onHover: isHovered => {
-                     if (isHovered) {
-                         PopOutManager.show(volumeSlider)
-                     }
-                 }
+            if (isHovered) {
+                PopOutManager.show(volumeSlider);
+            }
+        }
     }
 
     HorizontalSlider {
         id: volumeSlider
-
+        anchor.item: root
         slideValue: Audio.volume
         onSlide: newVolume => {
-                     Audio.setVolume(newVolume)
-                 }
+            Audio.setVolume(newVolume);
+        }
         hostWidth: volumeView.width
         hostHeight: volumeView.height
     }

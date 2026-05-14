@@ -1,19 +1,15 @@
 import Quickshell
 import QtQuick
 import "./../widgets"
-import "./workspaces"
-import "./launcher"
-import "./time"
 import "./../config"
-import QtQuick.Layouts
 
 Scope {
     Variants {
         model: Quickshell.screens
 
         StyledWindow {
-            property var modelData
             id: topBar
+            property var modelData
             name: "topBar"
             screen: modelData
 
@@ -24,9 +20,7 @@ Scope {
             implicitHeight: topBarContainer.implicitHeight
             Item {
                 id: topBarContainer
-                implicitHeight: Math.max(leftModules.implicitHeight,
-                                         rightModules.implicitHeight)
-                                + (2 * Appearance.defaults.vPadding)
+                implicitHeight: Math.max(leftModules.implicitHeight, rightModules.implicitHeight) + (2 * Appearance.defaults.vPadding)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -35,7 +29,6 @@ Scope {
                 anchors.topMargin: Appearance.defaults.vPadding
                 anchors.bottomMargin: Appearance.defaults.vPadding
                 anchors.verticalCenter: parent.verticalCenter
-
 
                 LeftModules {
                     id: leftModules

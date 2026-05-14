@@ -1,9 +1,8 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
-import "./../../config"
 import "./../../widgets"
 import "./../../services"
-import QtQuick.Layouts
-import Quickshell.Io
 
 Item {
     id: workspaceItem
@@ -17,9 +16,9 @@ Item {
     InteractiveView {
         id: workspaceComponent
         StyledTextPadded {
-            text: workspaceId
+            text: workspaceItem.workspaceId
         }
-        active: workspaceId == activeWorkspaceId
-        onClicked: Hyprland.dispatch(`workspace ${workspaceId}`)
+        active: workspaceItem.workspaceId == workspaceItem.activeWorkspaceId
+        onClicked: Hyprland.dispatch(`workspace ${workspaceItem.workspaceId}`)
     }
 }

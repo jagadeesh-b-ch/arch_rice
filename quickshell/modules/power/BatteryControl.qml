@@ -1,6 +1,7 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick 2.15
 import QtQuick.Layouts
-import Quickshell.Io
 import Quickshell.Services.UPower
 import "./../../widgets"
 import "./../../config"
@@ -19,8 +20,7 @@ InteractiveView {
         MaterialIconPadded {
             leftPadding: 0
             Layout.alignment: Qt.AlignVCenter
-            text: Icons.getBatteryIcon(batteryPercentage, UPower.displayDevice.state === UPowerDeviceState.Charging)
+            text: Icons.getBatteryIcon(root.batteryPercentage, UPower.displayDevice.state === UPowerDeviceState.Charging)
         }
     }
 }
-

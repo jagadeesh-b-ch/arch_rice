@@ -1,4 +1,3 @@
-import "./../services"
 import "./../utils"
 import Quickshell.Io
 import QtQuick

@@ -1,4 +1,5 @@
 pragma Singleton
+pragma ComponentBehavior: Bound
 
 import Quickshell
 import QtQuick
@@ -97,5 +98,4 @@ Singleton {
         readonly property string secondary: "#9DC183"
         readonly property string text: "#2E2E2E"
     }
-
 }

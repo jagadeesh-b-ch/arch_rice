@@ -3,7 +3,6 @@ import "./../config"
 
 StyledText {
     id: styledTextPadded
-    property alias text: styledTextPadded.text
     leftPadding: Appearance.defaults.hPadding
     rightPadding: Appearance.defaults.hPadding
     topPadding: Appearance.defaults.vPadding

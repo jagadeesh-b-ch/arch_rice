@@ -22,13 +22,12 @@ Rectangle {
 
         anchors.centerIn: parent
 
-        width: (contentLoader.item ? contentLoader.item.implicitWidth : 0)
-        height: (contentLoader.item ? contentLoader.item.implicitHeight : 0)
+        width: contentLoader.implicitWidth
+        height: contentLoader.implicitHeight
         anchors.margins: Appearance.padding.smallest
 
         radius: Appearance.defaults.rounding
-        color: (hovered
-                || active) ? Appearance.defaults.color.primary  : Appearance.defaults.color.secondary
+        color: (root.hovered || root.active) ? Appearance.defaults.color.primary : Appearance.defaults.color.secondary
 
         Loader {
             id: contentLoader
@@ -41,12 +40,12 @@ Rectangle {
             preventStealing: true
             propagateComposedEvents: true
             onEntered: {
-                hovered = true
-                root.hover(true)
+                root.hovered = true;
+                root.hover(true);
             }
             onExited: {
-                hovered = false
-                root.hover(false)
+                root.hovered = false;
+                root.hover(false);
             }
             onClicked: root.clicked()
         }

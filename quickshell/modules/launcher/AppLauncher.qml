@@ -1,5 +1,4 @@
 import QtQuick 2.15
-import QtQuick.Layouts
 import Quickshell.Io
 import "./../../config"
 import "./../../utils"

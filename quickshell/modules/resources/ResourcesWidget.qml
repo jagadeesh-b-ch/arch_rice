@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Layouts
 import "./../../config"
 import "./../../widgets"
@@ -8,8 +8,7 @@ InteractiveView {
     id: root
 
     property string cpu: `${Resources.cpuUsage}%`
-    property string ram: `${Resources.usedRam.toFixed(
-                             2)}/${Resources.totalRam.toFixed(2)} G`
+    property string ram: `${Resources.usedRam.toFixed(2)}/${Resources.totalRam.toFixed(2)} G`
     property string temp: `${Resources.cpuTemp}\u00B0C`
 
     spacing: Appearance.padding.smallest
@@ -61,5 +60,4 @@ InteractiveView {
             }
         }
     }
-
 }

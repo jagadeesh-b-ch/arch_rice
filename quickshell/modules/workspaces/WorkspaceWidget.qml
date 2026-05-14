@@ -2,7 +2,6 @@ import QtQuick
 import "./../../services"
 import "./../../widgets"
 import "./../../config"
-import Quickshell
 import QtQuick.Layouts
 
 StyledView {
@@ -13,6 +12,7 @@ StyledView {
             model: Hyprland.finalWorkspaceIds
             delegate: Workspace {
                 id: workspaceNumber
+                required property var modelData
                 workspaceId: modelData
                 activeWorkspaceId: Hyprland.activeWsId
                 z: 1 // Ensure text is above the background

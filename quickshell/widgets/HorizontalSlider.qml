@@ -4,8 +4,6 @@ import "./../config"
 
 PopOutWindow {
     id: sliderPopout
-    anchor.item: root
-
     property int horizontalScale: 3
     property int verticalScale: 1
 
@@ -22,7 +20,7 @@ PopOutWindow {
         anchors.fill: parent
         from: 0.0
         to: 1.0
-        value: slideValue
+        value: sliderPopout.slideValue
 
         handle: Rectangle {
             color: Appearance.defaults.color.primary
@@ -56,7 +54,7 @@ PopOutWindow {
         }
 
         onMoved: {
-            sliderPopout.slide(value)
+            sliderPopout.slide(value);
         }
     }
 }
