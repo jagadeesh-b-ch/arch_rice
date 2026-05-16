@@ -1,5 +1,6 @@
 import QtQuick
 import "./../config"
+import "./../services"
 
 Rectangle {
     id: root
@@ -7,6 +8,7 @@ Rectangle {
     property int spacing: 0
     property bool active: false
     property bool hovered: false
+    property bool popoutManagerExempt: false
     signal clicked
     signal hover(bool hovered)
     default property alias content: contentLoader.sourceComponent
@@ -41,6 +43,9 @@ Rectangle {
             propagateComposedEvents: true
             onEntered: {
                 root.hovered = true;
+                if (!root.popoutManagerExempt) {
+                    PopOutManager.hideCurrent();
+                }
                 root.hover(true);
             }
             onExited: {

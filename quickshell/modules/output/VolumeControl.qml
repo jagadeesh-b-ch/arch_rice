@@ -16,32 +16,49 @@ Item {
 
     property int readableVolume: (Audio.volume * 100)
 
-    FontMetrics {
-        id: metrics
-        font: Qt.font({
-            "family": Appearance.defaults.fontFamily,
-            "pixelSize": Appearance.defaults.fontSize
-        })
-    }
-
     InteractiveView {
         id: volumeView
-        RowLayout {
-            spacing: Appearance.padding.smallest
-            StyledTextPadded {
-                text: root.readableVolume
-                rightPadding: 0
+        popoutManagerExempt: true
+        content: Item {
+            id: volumeContent
+            readonly property real fixedTextWidth: volumeMetric.width + Appearance.defaults.hPadding
+
+            implicitWidth: fixedTextWidth + volumeIcon.implicitWidth + rowLayout.spacing
+            implicitHeight: rowLayout.implicitHeight
+
+            TextMetrics {
+                id: volumeMetric
+                font.family: Appearance.defaults.fontFamily
+                font.pointSize: Appearance.defaults.fontSize
+                text: "100"
             }
 
-            MaterialIconPadded {
-                text: Icons.getVolumeIcon(root.readableVolume)
-                leftPadding: 0
+            RowLayout {
+                id: rowLayout
+                spacing: Appearance.padding.smallest
+                anchors.centerIn: parent
+
+                StyledTextPadded {
+                    text: root.readableVolume
+                    rightPadding: 0
+                    Layout.preferredWidth: volumeContent.fixedTextWidth
+                    horizontalAlignment: Text.AlignRight
+                }
+
+                MaterialIconPadded {
+                    id: volumeIcon
+                    text: Icons.getVolumeIcon(root.readableVolume)
+                    leftPadding: 0
+                }
             }
         }
+
         onClicked: Hyprland.dispatch(`hl.dsp.exec_cmd("${DefaultApps.audio}", { tag = "bar_launch" })`)
         onHover: isHovered => {
             if (isHovered) {
                 PopOutManager.show(volumeSlider);
+            } else {
+                volumeSlider.restartAutoHide();
             }
         }
     }

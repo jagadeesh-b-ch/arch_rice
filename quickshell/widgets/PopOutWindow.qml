@@ -54,14 +54,18 @@ PopupWindow {
         hoverTimer.stop();
     }
 
+    function restartAutoHide() {
+        hoverTimer.restart();
+    }
+
     Timer {
         id: hoverTimer
         running: false
         repeat: false
-        interval: 3000
+        interval: 2000
         onTriggered: {
             if (!popOutWindow.popoutHovered) {
-                popOutWindow.visible = false;
+                popOutWindow.forceHide();
             }
         }
     }

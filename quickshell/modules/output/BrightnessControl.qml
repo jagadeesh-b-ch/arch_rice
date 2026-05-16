@@ -20,20 +20,46 @@ Item {
 
     InteractiveView {
         id: brightnessView
-        RowLayout {
-            spacing: Appearance.padding.smallest
-            StyledTextPadded {
-                text: root.readableBrightness
-                rightPadding: 0
+        popoutManagerExempt: true
+        content: Item {
+            id: brightnessContent
+            readonly property real fixedTextWidth: brightnessMetric.width + Appearance.defaults.hPadding
+
+            implicitWidth: fixedTextWidth + brightnessIcon.implicitWidth + rowLayout.spacing
+            implicitHeight: rowLayout.implicitHeight
+
+            TextMetrics {
+                id: brightnessMetric
+                font.family: Appearance.defaults.fontFamily
+                font.pointSize: Appearance.defaults.fontSize
+                text: "100"
             }
-            MaterialIconPadded {
-                text: Icons.getBrightnessIcon(root.readableBrightness)
-                leftPadding: 0
+
+            RowLayout {
+                id: rowLayout
+                spacing: Appearance.padding.smallest
+                anchors.centerIn: parent
+
+                StyledTextPadded {
+                    text: root.readableBrightness
+                    rightPadding: 0
+                    Layout.preferredWidth: brightnessContent.fixedTextWidth
+                    horizontalAlignment: Text.AlignRight
+                }
+
+                MaterialIconPadded {
+                    id: brightnessIcon
+                    text: Icons.getBrightnessIcon(root.readableBrightness)
+                    leftPadding: 0
+                }
             }
         }
+
         onHover: isHovered => {
             if (isHovered) {
                 PopOutManager.show(brightnessSlider);
+            } else {
+                brightnessSlider.restartAutoHide();
             }
         }
     }

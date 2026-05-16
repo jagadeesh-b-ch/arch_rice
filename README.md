@@ -11,6 +11,7 @@ Packages that need to be installed to rice a fresh system
 - pavucontrol
 - brightnessctl
 - power-profiles-daemon
+- ddcutil
 - git
 - pass
 - fzf

@@ -1,21 +1,29 @@
 pragma Singleton
 import QtQuick 2.15
+import "./../widgets"
 
 QtObject {
-    property var currentPopOut: null
+    property PopOutWindow currentPopOut: null
 
     function show(popOutItem) {
         if (currentPopOut && currentPopOut !== popOutItem) {
-            currentPopOut.visible = false
+            currentPopOut.forceHide();
         }
-        currentPopOut = popOutItem
-        currentPopOut.visible = true
+        currentPopOut = popOutItem;
+        currentPopOut.show();
     }
 
     function hide(popOutItem) {
         if (currentPopOut === popOutItem) {
-            currentPopOut.visible = false
-            currentPopOut = null
+            currentPopOut.forceHide();
+            currentPopOut = null;
+        }
+    }
+
+    function hideCurrent() {
+        if (currentPopOut) {
+            currentPopOut.forceHide();
+            currentPopOut = null;
         }
     }
 }

@@ -53,8 +53,13 @@ PopOutWindow {
             }
         }
 
+        onPressedChanged: {
+            if (pressed) sliderPopout.restartAutoHide();
+        }
+
         onMoved: {
             sliderPopout.slide(value);
+            sliderPopout.restartAutoHide();
         }
     }
 }
