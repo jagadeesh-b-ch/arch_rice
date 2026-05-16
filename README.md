@@ -10,6 +10,7 @@ Packages that need to be installed to rice a fresh system
 - bluetui
 - pavucontrol
 - brightnessctl
+- power-profiles-daemon
 - git
 - pass
 - fzf
