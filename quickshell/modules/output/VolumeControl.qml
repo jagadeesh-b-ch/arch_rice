@@ -38,7 +38,7 @@ Item {
                 leftPadding: 0
             }
         }
-        onClicked: Hyprland.dispatch("exec [tag +bar_launch] pwvucontrol")
+        onClicked: Hyprland.dispatch(`hl.dsp.exec_cmd("${DefaultApps.audio}", { tag = "bar_launch" })`)
         onHover: isHovered => {
             if (isHovered) {
                 PopOutManager.show(volumeSlider);

@@ -19,6 +19,6 @@ Item {
             text: workspaceItem.workspaceId
         }
         active: workspaceItem.workspaceId == workspaceItem.activeWorkspaceId
-        onClicked: Hyprland.dispatch(`workspace ${workspaceItem.workspaceId}`)
+        onClicked: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${workspaceItem.workspaceId} })`)
     }
 }

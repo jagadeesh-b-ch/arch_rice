@@ -5,7 +5,7 @@ import "./../../services"
 
 InteractiveView {
     z: 10
-    onClicked: Hyprland.dispatch("exec [tag +bar_launch] alacritty -e bluetui")
+    onClicked: Hyprland.dispatch(`hl.dsp.exec_cmd("${DefaultApps.terminal} -e ${DefaultApps.bluetooth}", { tag = "bar_launch" })`)
     MaterialIconPadded {
         text: Bluetooth.powered ? "bluetooth" : "bluetooth_disabled"
     }

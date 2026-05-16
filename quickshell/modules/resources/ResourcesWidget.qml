@@ -13,7 +13,7 @@ InteractiveView {
 
     spacing: Appearance.padding.smallest
 
-    onClicked: Hyprland.dispatch("exec [tag +bar_launch] alacritty -e btop")
+    onClicked: Hyprland.dispatch(`hl.dsp.exec_cmd("${DefaultApps.terminal} -e ${DefaultApps.resourceMonitor}", { tag = "bar_launch" })`)
 
     content: Item {
         implicitWidth: resources.implicitWidth + (2 * Appearance.defaults.hPadding)

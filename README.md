@@ -5,6 +5,11 @@ Packages that need to be installed to rice a fresh system
 - neovim (Add Lazyvim for breezy configuration)
 - fd (For Neovim)
 - networkmanager
+- bluez
+- bluez-utils
+- bluetui
+- pavucontrol
+- brightnessctl
 - git
 - pass
 - fzf
