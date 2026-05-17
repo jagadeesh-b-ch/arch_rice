@@ -1,10 +1,12 @@
 # Quickshell Config — Hyprland Top Bar
 
+Part of `~/.config` dotfiles repo (see `../AGENTS.md` for broader context).
+
 ## Entry point
-- `shell.qml` — root `Scope` that instantiates `TopBar`
-- Quickshell auto-loads this config from `~/.config/quickshell/`
-- Run: `quickshell` (reload by restarting the process)
-- No build/lint/test step — QML interpreted directly
+- `shell.qml` — root `Scope` → `TopBar`
+- Quickshell auto-loads from `~/.config/quickshell/`
+- Run: `quickshell` (reload by restarting process)
+- No build/lint/test — QML interpreted
 
 ## Import conventions
 - Relative imports only: `import "./../services"`, `import "./../../services"`, `import "./../config"`, `import "./../widgets"`
@@ -40,7 +42,6 @@
 - **`StyledFontMetric` is NOT a `pragma Singleton`** — cannot call `widthForCharacters()` statically. Use `Row` layout instead of fixed-width calculations for text+icon pairs.
 - **`Paths.qml` paths use `.slice(7)`** — strips leading `/run/...` mount prefix for `Paths.state` and `Paths.pictures`.
 - **CPU temp** — `services/Resources.qml` delegates to `utils/scripts/find-cpu-temp.sh` (5-level fallback: thermal_zone type match → any thermal_zone → hwmon label match → any hwmon → `sensors -j` from lm-sensors). Output in millidegrees.
-- **No `flake.nix`** — optional home-manager integration file does not exist in this repo.
 
 ## External dependencies
 - **Hyprland** — required for `Hyprland.dispatch()`, workspaces, clients

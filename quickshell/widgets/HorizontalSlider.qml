@@ -53,8 +53,8 @@ PopOutWindow {
             }
         }
 
-        onPressedChanged: {
-            if (pressed) sliderPopout.restartAutoHide();
+        onHoveredChanged: {
+            sliderPopout._contentHovered = slider.hovered;
         }
 
         onMoved: {

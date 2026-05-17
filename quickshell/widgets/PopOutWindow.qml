@@ -12,6 +12,7 @@ PopupWindow {
     property int hPadding: Appearance.defaults.hPadding
     property int vPadding: Appearance.defaults.vPadding
     property bool popoutHovered: false
+    property bool _contentHovered: false
 
     color: "transparent"
 
@@ -27,26 +28,30 @@ PopupWindow {
 
         default property alias content: contentLoader.sourceComponent
 
-        Loader {
-            id: contentLoader
-        }
-
         MouseArea {
+            id: hoverTrack
             anchors.fill: parent
-            z: 100
             hoverEnabled: true
             acceptedButtons: Qt.NoButton
-            onEntered: popOutWindow.popoutHovered = true
+            onEntered: {
+                popOutWindow.popoutHovered = true;
+                hoverTimer.stop();
+            }
             onExited: {
                 popOutWindow.popoutHovered = false;
                 hoverTimer.restart();
             }
         }
+
+        Loader {
+            id: contentLoader
+        }
     }
 
     function show() {
         visible = true;
-        hoverTimer.restart();
+        popoutHovered = true;
+        hoverTimer.stop();
     }
 
     function forceHide() {
@@ -55,16 +60,15 @@ PopupWindow {
     }
 
     function restartAutoHide() {
+        popoutHovered = false;
         hoverTimer.restart();
     }
 
     Timer {
         id: hoverTimer
-        running: false
-        repeat: false
         interval: 2000
         onTriggered: {
-            if (!popOutWindow.popoutHovered) {
+            if (!popOutWindow.popoutHovered && !popOutWindow._contentHovered) {
                 popOutWindow.forceHide();
             }
         }
