@@ -27,6 +27,11 @@ Row {
         currentScreen: root.currentScreen
     }
 
+    WallpaperWidget {
+        anchors.verticalCenter: parent.verticalCenter
+        currentScreen: root.currentScreen
+    }
+
     PowerWidget {
         anchors.verticalCenter: parent.verticalCenter
     }

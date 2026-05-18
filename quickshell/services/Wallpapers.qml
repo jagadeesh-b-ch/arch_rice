@@ -1,6 +1,5 @@
 pragma Singleton
 
-import "./../utils/scripts/fuzzysort.js" as Fuzzy
 import "./../utils"
 import Quickshell
 import Quickshell.Io
@@ -18,40 +17,29 @@ Singleton {
     readonly property string current: showPreview ? previewPath : actualCurrent
     property string previewPath
     property string actualCurrent
-    property bool previewColourLock
-
-    readonly property list<var> preppedWalls: list.map(w => ({
-                name: Fuzzy.prepare(w.name),
-                path: Fuzzy.prepare(w.path),
-                wall: w
-            }))
+    property bool bothReady: false
 
     function fuzzyQuery(search: string): var {
-        return Fuzzy.go(search, preppedWalls, {
-            all: true,
-            keys: ["name", "path"],
-            scoreFn: r => r[0].score * 0.9 + r[1].score * 0.1
-        }).map(r => r.obj.wall);
+        if (!search)
+            return list;
+        var lower = search.toLowerCase();
+        return list.filter(w => w.name.toLowerCase().includes(lower) || w.path.toLowerCase().includes(lower));
     }
 
     function setWallpaper(path: string): void {
         actualCurrent = path;
-        Quickshell.execDetached(["caelestia", "wallpaper", "-f", path]);
+        Quickshell.execDetached(["mkdir", "-p", `${Paths.state}/wallpaper`.slice(7)]);
+        Quickshell.execDetached(["sh", "-c", `printf '%s' '${path}' > ${currentNamePath}`]);
     }
 
     function preview(path: string): void {
         previewPath = path;
         showPreview = true;
-        getPreviewColoursProc.running = true;
     }
 
     function stopPreview(): void {
         showPreview = false;
-        if (!previewColourLock)
-            Colours.showPreview = false;
     }
-
-    reloadableId: "wallpapers"
 
     IpcHandler {
         target: "wallpaper"
@@ -69,33 +57,42 @@ Singleton {
         }
     }
 
+    function _checkBothReady() {
+        if (!root.bothReady && root.fileViewReady && root.processDone) {
+            root.bothReady = true;
+            if (!root.actualCurrent && wallpapers.instances.length > 0)
+                root.setWallpaper(wallpapers.instances[0].path);
+        }
+    }
+
+    property bool fileViewReady: false
+    property bool processDone: false
+
     FileView {
         path: root.currentNamePath
         watchChanges: true
         onFileChanged: reload()
         onLoaded: {
-            root.actualCurrent = text().trim();
-            root.previewColourLock = false;
-        }
-    }
-
-    Process {
-        id: getPreviewColoursProc
-
-        command: ["caelestia", "wallpaper", "-p", root.previewPath]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                Colours.load(text, true);
-                Colours.showPreview = true;
+            root.fileViewReady = true;
+            var saved = text().trim();
+            if (saved) {
+                root.actualCurrent = saved;
             }
+            root._checkBothReady();
         }
     }
 
     Process {
+        id: findProcess
         running: true
         command: ["find", root.path, "-type", "d", "-path", '*/.*', "-prune", "-o", "-not", "-name", '.*', "-type", "f", "-print"]
         stdout: StdioCollector {
-            onStreamFinished: wallpapers.model = text.trim().split("\n").filter(w => root.extensions.includes(w.slice(w.lastIndexOf(".") + 1))).sort()
+            onStreamFinished: {
+                root.processDone = true;
+                var sorted = text.trim().split("\n").filter(w => root.extensions.includes(w.slice(w.lastIndexOf(".") + 1))).sort();
+                wallpapers.model = sorted;
+                root._checkBothReady();
+            }
         }
     }
 
