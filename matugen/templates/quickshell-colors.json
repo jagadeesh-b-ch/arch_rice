@@ -1,0 +1,9 @@
+{
+  "mode": "{{ mode }}",
+  "colors": {<* for name, color in colors *>
+    "{{ name }}": "{{ color.default.hex }}"<* if {{ loop.last }} *><* else *>,<* endif *><* endfor *>
+  },
+  "base16": {<* for name, color in base16 *>
+    "{{ name }}": "{{ color.default.hex }}"<* if {{ loop.last }} *><* else *>,<* endif *><* endfor *>
+  }
+}

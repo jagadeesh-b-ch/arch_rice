@@ -2,7 +2,9 @@ pragma Singleton
 pragma ComponentBehavior: Bound
 
 import Quickshell
+import Quickshell.Io
 import QtQuick
+import "./../utils"
 
 Singleton {
     id: root
@@ -14,6 +16,36 @@ Singleton {
     readonly property FontFamily fontFamily: FontFamily {}
     readonly property FontSize fontSize: FontSize {}
     readonly property Defaults defaults: Defaults {}
+
+    readonly property string colorsJsonPath: `${Paths.state}/wallpaper/colors.json`.slice(7)
+
+    function loadColors(text) {
+        var data = JSON.parse(text);
+        if (!data || !data.colors)
+            return;
+        root.defaults.color.apply(data.colors);
+        updateHyprctlBorders(data.colors);
+    }
+
+    function updateHyprctlBorders(colors) {
+        var active = colors.primary ? "rgba(" + colors.primary.replace("#", "") + "ee)" : "";
+        var inactive = colors.surface_variant ? "rgba(" + colors.surface_variant.replace("#", "") + "aa)" : "";
+        if (active)
+            Quickshell.execDetached(["hyprctl", "keyword", "general:col.active_border", active]);
+        if (inactive)
+            Quickshell.execDetached(["hyprctl", "keyword", "general:col.inactive_border", inactive]);
+    }
+
+    FileView {
+        path: root.colorsJsonPath
+        watchChanges: true
+        onFileChanged: reload()
+        onLoaded: {
+            var t = text().trim();
+            if (t)
+                root.loadColors(t);
+        }
+    }
 
     component Rounding: QtObject {
         readonly property int small: 12
@@ -95,8 +127,20 @@ Singleton {
     }
 
     component Color: QtObject {
-        readonly property string primary: "#4CAF50"
-        readonly property string secondary: "#9DC183"
-        readonly property string text: "#2E2E2E"
+        property string primary: "#4CAF50"
+        property string secondary: "#9DC183"
+        property string text: "#2E2E2E"
+        property string background: "#14140c"
+
+        function apply(scheme) {
+            if (scheme.primary)
+                primary = scheme.primary;
+            if (scheme.surface_container_highest)
+                secondary = scheme.surface_container_highest;
+            if (scheme.on_surface)
+                text = scheme.on_surface;
+            if (scheme.background)
+                background = scheme.background;
+        }
     }
 }

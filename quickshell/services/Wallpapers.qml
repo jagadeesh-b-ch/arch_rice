@@ -30,6 +30,7 @@ Singleton {
         actualCurrent = path;
         Quickshell.execDetached(["mkdir", "-p", `${Paths.state}/wallpaper`.slice(7)]);
         Quickshell.execDetached(["sh", "-c", `printf '%s' '${path}' > ${currentNamePath}`]);
+        Quickshell.execDetached(["matugen", "image", path, "--prefer", "value"]);
     }
 
     function preview(path: string): void {

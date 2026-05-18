@@ -13,6 +13,7 @@ Packages that need to be installed to rice a fresh system
 - power-profiles-daemon
 - ddcutil
 - git
+- matugen
 - pass
 - fzf
 - hyprland
