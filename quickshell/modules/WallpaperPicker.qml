@@ -12,6 +12,7 @@ PanelWindow {
 
   color: "transparent"
   visible: false
+  focusable: true
 
   anchors.top: true
   anchors.bottom: true
@@ -24,6 +25,7 @@ PanelWindow {
 
   property int currentIndex: 0
   readonly property int count: carouselRepeater.count
+  property bool animateCarousel: true
 
   Rectangle {
     anchors.fill: parent
@@ -38,14 +40,22 @@ PanelWindow {
 
   Item {
     id: carouselBox
-    anchors.centerIn: parent
-    width: carouselRow.width
+    x: 40
+    width: root.width - 80
     height: carouselRow.height
+    clip: true
+    y: (root.height - height) / 2
     z: 1
 
     Row {
       id: carouselRow
-      spacing: 10
+      x: (carouselBox.width / 2) - (root.currentIndex * 160 + 240)
+      spacing: 0
+
+      Behavior on x {
+        enabled: root.animateCarousel
+        NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+      }
 
       Repeater {
         id: carouselRepeater
@@ -57,49 +67,32 @@ PanelWindow {
 
           readonly property int dist: Math.abs(index - root.currentIndex)
 
-          implicitWidth: dist === 0 ? 280
-            : dist === 1 ? 190
-            : 130
-          implicitHeight: dist === 0 ? 180
-            : dist === 1 ? 130
-            : 90
+          implicitWidth: dist === 0 ? 480 : 160
+          implicitHeight: 300
 
           Rectangle {
             anchors.fill: parent
-            radius: 12
             color: "#222222"
-            border.width: dist === 0 ? 3 : 1
-            border.color: dist === 0 ? "#4CAF50" : "#555555"
             clip: true
 
             Image {
               anchors.fill: parent
-              anchors.margins: 2
               source: "file://" + modelData.path
               asynchronous: true
-              sourceSize.width: 280
-              sourceSize.height: 180
+              sourceSize.width: 480
+              sourceSize.height: 300
               fillMode: Image.PreserveAspectCrop
             }
-          }
-
-          Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 6
-            text: modelData.name
-            color: "#ffffff"
-            font.pixelSize: 11
-            style: Text.Outline
-            styleColor: "#cc000000"
-            visible: dist <= 1
           }
 
           MouseArea {
             anchors.fill: parent
             onClicked: {
-              root.currentIndex = index
-              root.setAndClose()
+              if (root.currentIndex === index) {
+                root.setAndClose()
+              } else {
+                root.currentIndex = index
+              }
             }
           }
 
@@ -115,6 +108,7 @@ PanelWindow {
   }
 
   Item {
+    id: keyboardHandler
     anchors.fill: parent
     focus: true
     Keys.onLeftPressed: {
@@ -133,9 +127,13 @@ PanelWindow {
     if (s) {
       root.screen = s
     }
-    currentIndex = Math.max(0, Math.min(currentIndex, count - 1))
+
+    animateCarousel = false
+    setCurrentIndexToActual()
     visible = true
     requestActivate()
+    keyboardHandler.forceActiveFocus()
+    animateCarousel = true
   }
 
   function setAndClose() {
@@ -146,7 +144,21 @@ PanelWindow {
     close()
   }
 
+  function setCurrentIndexToActual() {
+    var cur = Wallpapers.actualCurrent
+    currentIndex = 0
+    for (var i = 0; i < count; i++) {
+      if (Wallpapers.list[i].path === cur) {
+        currentIndex = i
+        break
+      }
+    }
+  }
+
   function close() {
     visible = false
+    animateCarousel = false
+    setCurrentIndexToActual()
+    animateCarousel = true
   }
 }

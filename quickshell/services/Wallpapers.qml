@@ -82,6 +82,24 @@ Singleton {
         }
     }
 
+    Timer {
+        interval: 10000
+        running: true
+        repeat: true
+        onTriggered: {
+            findProcess.running = false;
+            refreshTimer.start();
+        }
+    }
+
+    Timer {
+        id: refreshTimer
+        interval: 500
+        onTriggered: {
+            findProcess.running = true;
+        }
+    }
+
     Process {
         id: findProcess
         running: true
