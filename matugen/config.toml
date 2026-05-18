@@ -3,4 +3,4 @@ mode = "dark"
 
 [templates.quickshell]
 input_path = "templates/quickshell-colors.json"
-output_path = "~/.local/state/caelestia/wallpaper/colors.json"
+output_path = "~/.local/state/archie/wallpaper/colors.json"

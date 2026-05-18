@@ -20,31 +20,41 @@ Singleton {
     readonly property string colorsJsonPath: `${Paths.state}/wallpaper/colors.json`.slice(7)
 
     function loadColors(text) {
-        var data = JSON.parse(text);
-        if (!data || !data.colors)
-            return;
-        root.defaults.color.apply(data.colors);
-        updateHyprctlBorders(data.colors);
+        try {
+            var data = JSON.parse(text)
+            if (!data || !data.colors) return
+            root.defaults.color.apply(data.colors)
+            updateHyprctlBorders(data.colors)
+        } catch (e) {
+            // JSON parse failed, will retry
+        }
     }
 
     function updateHyprctlBorders(colors) {
-        var active = colors.primary ? "rgba(" + colors.primary.replace("#", "") + "ee)" : "";
-        var inactive = colors.surface_variant ? "rgba(" + colors.surface_variant.replace("#", "") + "aa)" : "";
+        var active = colors.primary ? "rgba(" + colors.primary.replace("#", "") + "ee)" : ""
+        var inactive = colors.surface_variant
+            ? "rgba(" + colors.surface_variant.replace("#", "") + "aa)"
+            : ""
         if (active)
-            Quickshell.execDetached(["hyprctl", "keyword", "general:col.active_border", active]);
+            Quickshell.execDetached(["hyprctl", "keyword", "general:col.active_border", active])
         if (inactive)
-            Quickshell.execDetached(["hyprctl", "keyword", "general:col.inactive_border", inactive]);
+            Quickshell.execDetached(["hyprctl", "keyword", "general:col.inactive_border", inactive])
     }
 
     FileView {
+        id: colorsFile
         path: root.colorsJsonPath
-        watchChanges: true
-        onFileChanged: reload()
         onLoaded: {
-            var t = text().trim();
-            if (t)
-                root.loadColors(t);
+            var t = text().trim()
+            if (t) root.loadColors(t)
         }
+    }
+
+    Timer {
+        interval: 3000
+        running: true
+        repeat: true
+        onTriggered: colorsFile.reload()
     }
 
     component Rounding: QtObject {

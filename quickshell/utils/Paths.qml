@@ -10,10 +10,10 @@ Singleton {
     readonly property url home: StandardPaths.standardLocations(StandardPaths.HomeLocation)[0]
     readonly property url pictures: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
 
-    readonly property url data: `${StandardPaths.standardLocations(StandardPaths.GenericDataLocation)[0]}/caelestia`
-    readonly property url state: `${StandardPaths.standardLocations(StandardPaths.GenericStateLocation)[0]}/caelestia`
-    readonly property url cache: `${StandardPaths.standardLocations(StandardPaths.GenericCacheLocation)[0]}/caelestia`
-    readonly property url config: `${StandardPaths.standardLocations(StandardPaths.GenericConfigLocation)[0]}/caelestia`
+    readonly property url data: `${StandardPaths.standardLocations(StandardPaths.GenericDataLocation)[0]}/archie`
+    readonly property url state: `${StandardPaths.standardLocations(StandardPaths.GenericStateLocation)[0]}/archie`
+    readonly property url cache: `${StandardPaths.standardLocations(StandardPaths.GenericCacheLocation)[0]}/archie`
+    readonly property url config: `${StandardPaths.standardLocations(StandardPaths.GenericConfigLocation)[0]}/archie`
 
     readonly property url imagecache: `${cache}/imagecache`
 

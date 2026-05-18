@@ -47,5 +47,5 @@ Part of `~/.config` dotfiles repo (see `../AGENTS.md` for broader context).
 - **Hyprland** — required for `Hyprland.dispatch()`, workspaces, clients
 - **Pipewire** — audio via `Quickshell.Services.Pipewire`
 - **nmcli** — network scanning (networkmanager package)
-- **caelestia** — wallpaper set/preview commands
+- **archie** — wallpaper set/preview commands
 - **btop** — launched on resource widget click
