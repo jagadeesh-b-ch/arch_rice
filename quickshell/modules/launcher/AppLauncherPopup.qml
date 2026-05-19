@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 import "./../../config"
 import "./../../services"
@@ -27,6 +28,12 @@ PanelWindow {
     anchors.bottom: true
     anchors.left: true
     anchors.right: true
+
+    IpcHandler {
+        target: "launcher"
+        function open(): void { PopOutManager.hideCurrent(); popup.show(); }
+        function close(): void { popup.forceHide(); }
+    }
 
     ListModel {
         id: appModel
@@ -134,7 +141,6 @@ PanelWindow {
                     lastUsed: now
                 };
             }
-            saveHistory();
             app.execute();
         }
         popup.visible = false;

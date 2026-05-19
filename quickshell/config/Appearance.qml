@@ -25,19 +25,30 @@ Singleton {
             if (!data || !data.colors)
                 return;
             root.defaults.color.apply(data.colors);
-            updateHyprctlBorders(data.colors);
+            updateHyprctlBorders(root.defaults.color);
         } catch (e) {
             // JSON parse failed, will retry
         }
     }
 
     function updateHyprctlBorders(colors) {
-        var active = colors.primary ? "rgba(" + colors.primary.replace("#", "") + "ee)" : "";
-        var inactive = colors.surface_variant ? "rgba(" + colors.surface_variant.replace("#", "") + "aa)" : "";
-        if (active)
-            Quickshell.execDetached(["hyprctl", "keyword", "general:col.active_border", active]);
-        if (inactive)
-            Quickshell.execDetached(["hyprctl", "keyword", "general:col.inactive_border", inactive]);
+        var rgba = function (c, a) { return c ? "rgba(" + c.replace("#", "") + a + ")" : ""; };
+        var activeColor = rgba(colors.primary, "EE");
+        var activeGradient = rgba(colors.primaryContainer, "99");
+        var inactiveColor = rgba(colors.surface_variant, "AA");
+        if (activeGradient)
+            Quickshell.execDetached(["hyprctl", "eval",
+                "hl.config({ general = { col = { active_border = { colors = { \"" + activeColor + "\", \"" + activeGradient + "\" }, angle = 45 } } } })"]);
+        else if (activeColor)
+            Quickshell.execDetached(["hyprctl", "eval",
+                "hl.config({ general = { col = { active_border = \"" + activeColor + "\" } } })"]);
+        if (inactiveColor)
+            Quickshell.execDetached(["hyprctl", "eval",
+                "hl.config({ general = { col = { inactive_border = \"" + inactiveColor + "\" } } })"]);
+    }
+
+    Component.onCompleted: {
+        updateHyprctlBorders(root.defaults.color);
     }
 
     FileView {

@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 import "./../services"
 import "./../widgets"
@@ -120,6 +121,11 @@ PanelWindow {
     Keys.onReturnPressed: root.setAndClose()
     Keys.onEnterPressed: root.setAndClose()
     Keys.onEscapePressed: root.close()
+  }
+
+  IpcHandler {
+    target: "wallpaperpicker"
+    function open(): void { root.showPicker(null); }
   }
 
   function showPicker(screen) {
