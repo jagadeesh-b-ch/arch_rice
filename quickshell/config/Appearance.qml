@@ -21,32 +21,32 @@ Singleton {
 
     function loadColors(text) {
         try {
-            var data = JSON.parse(text)
-            if (!data || !data.colors) return
-            root.defaults.color.apply(data.colors)
-            updateHyprctlBorders(data.colors)
+            var data = JSON.parse(text);
+            if (!data || !data.colors)
+                return;
+            root.defaults.color.apply(data.colors);
+            updateHyprctlBorders(data.colors);
         } catch (e) {
             // JSON parse failed, will retry
         }
     }
 
     function updateHyprctlBorders(colors) {
-        var active = colors.primary ? "rgba(" + colors.primary.replace("#", "") + "ee)" : ""
-        var inactive = colors.surface_variant
-            ? "rgba(" + colors.surface_variant.replace("#", "") + "aa)"
-            : ""
+        var active = colors.primary ? "rgba(" + colors.primary.replace("#", "") + "ee)" : "";
+        var inactive = colors.surface_variant ? "rgba(" + colors.surface_variant.replace("#", "") + "aa)" : "";
         if (active)
-            Quickshell.execDetached(["hyprctl", "keyword", "general:col.active_border", active])
+            Quickshell.execDetached(["hyprctl", "keyword", "general:col.active_border", active]);
         if (inactive)
-            Quickshell.execDetached(["hyprctl", "keyword", "general:col.inactive_border", inactive])
+            Quickshell.execDetached(["hyprctl", "keyword", "general:col.inactive_border", inactive]);
     }
 
     FileView {
         id: colorsFile
         path: root.colorsJsonPath
         onLoaded: {
-            var t = text().trim()
-            if (t) root.loadColors(t)
+            var t = text().trim();
+            if (t)
+                root.loadColors(t);
         }
     }
 
@@ -138,19 +138,91 @@ Singleton {
 
     component Color: QtObject {
         property string primary: "#4CAF50"
-        property string secondary: "#9DC183"
-        property string text: "#2E2E2E"
-        property string background: "#14140c"
+        property string contentOnPrimary: "#FFFFFF"
+        property string primaryContainer: "#C8E6C9"
+        property string contentOnPrimaryContainer: "#1B5E20"
+        property string primaryInverse: "#8BDB8F"
+        property string secondary: "#6750A4"
+        property string contentOnSecondary: "#FFFFFF"
+        property string secondaryContainer: "#EADDFF"
+        property string contentOnSecondaryContainer: "#21005D"
+        property string tertiary: "#FF8A65"
+        property string contentOnTertiary: "#FFFFFF"
+        property string tertiaryContainer: "#FFDCC2"
+        property string contentOnTertiaryContainer: "#3E2723"
+        property string outline: "#79747E"
+        property string outlineVariant: "#CAC4D0"
+        property string surface: "#FFFBFE"
+        property string contentOnSurface: "#1C1B1F"
+        property string surfaceVariant: "#E7E0EC"
+        property string contentOnSurfaceVariant: "#49454F"
+        property string surfaceInverse: "#313033"
+        property string contentOnSurfaceInverse: "#F4EFF4"
+        property string background: "#FFFBFE"
+        property string contentOnBackground: "#1C1B1F"
+        property string error: "#B3261E"
+        property string contentOnError: "#FFFFFF"
+        property string errorContainer: "#F9DEDC"
+        property string contentOnErrorContainer: "#410E0B"
+        property string shadow: "#000000"
 
         function apply(scheme) {
             if (scheme.primary)
                 primary = scheme.primary;
-            if (scheme.surface_container_highest)
-                secondary = scheme.surface_container_highest;
+            if (scheme.on_primary)
+                contentOnPrimary = scheme.on_primary;
+            if (scheme.primary_container)
+                primaryContainer = scheme.primary_container;
+            if (scheme.on_primary_container)
+                contentOnPrimaryContainer = scheme.on_primary_container;
+            if (scheme.inverse_primary)
+                primaryInverse = scheme.inverse_primary;
+            if (scheme.secondary)
+                secondary = scheme.secondary;
+            if (scheme.on_secondary)
+                contentOnSecondary = scheme.on_secondary;
+            if (scheme.secondary_container)
+                secondaryContainer = scheme.secondary_container;
+            if (scheme.on_secondary_container)
+                contentOnSecondaryContainer = scheme.on_secondary_container;
+            if (scheme.tertiary)
+                tertiary = scheme.tertiary;
+            if (scheme.on_tertiary)
+                contentOnTertiary = scheme.on_tertiary;
+            if (scheme.tertiary_container)
+                tertiaryContainer = scheme.tertiary_container;
+            if (scheme.on_tertiary_container)
+                contentOnTertiaryContainer = scheme.on_tertiary_container;
+            if (scheme.outline)
+                outline = scheme.outline;
+            if (scheme.outline_variant)
+                outlineVariant = scheme.outline_variant;
+            if (scheme.surface)
+                surface = scheme.surface;
             if (scheme.on_surface)
-                text = scheme.on_surface;
+                contentOnSurface = scheme.on_surface;
+            if (scheme.surface_variant)
+                surfaceVariant = scheme.surface_variant;
+            if (scheme.on_surface_variant)
+                contentOnSurfaceVariant = scheme.on_surface_variant;
+            if (scheme.inverse_surface)
+                surfaceInverse = scheme.inverse_surface;
+            if (scheme.inverse_on_surface)
+                contentOnSurfaceInverse = scheme.inverse_on_surface;
             if (scheme.background)
                 background = scheme.background;
+            if (scheme.on_background)
+                contentOnBackground = scheme.on_background;
+            if (scheme.error)
+                error = scheme.error;
+            if (scheme.on_error)
+                contentOnError = scheme.on_error;
+            if (scheme.error_container)
+                errorContainer = scheme.error_container;
+            if (scheme.on_error_container)
+                contentOnErrorContainer = scheme.on_error_container;
+            if (scheme.shadow)
+                shadow = scheme.shadow;
         }
     }
 }
