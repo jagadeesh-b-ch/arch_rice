@@ -45,6 +45,7 @@ Item {
                     horizontalAlignment: Text.AlignRight
                     active: volumeView.active
                     hovered: volumeView.hovered
+                    Layout.alignment: Qt.AlignVCenter
                 }
 
                 MaterialIconPadded {
@@ -53,6 +54,7 @@ Item {
                     leftPadding: 0
                     active: volumeView.active
                     hovered: volumeView.hovered
+                    Layout.alignment: Qt.AlignVCenter
                 }
             }
         }

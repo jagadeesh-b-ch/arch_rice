@@ -47,6 +47,7 @@ Item {
                     horizontalAlignment: Text.AlignRight
                     active: brightnessView.active
                     hovered: brightnessView.hovered
+                    Layout.alignment: Qt.AlignVCenter
                 }
 
                 MaterialIconPadded {
@@ -55,6 +56,7 @@ Item {
                     leftPadding: 0
                     active: brightnessView.active
                     hovered: brightnessView.hovered
+                    Layout.alignment: Qt.AlignVCenter
                 }
             }
         }

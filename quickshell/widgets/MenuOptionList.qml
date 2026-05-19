@@ -59,17 +59,19 @@ Column {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: Appearance.spacing.small
 
-                MaterialIcon {
-                    text: modelData.icon
-                    hovered: parent.parent._hovered
-                    active: false
-                }
+                    MaterialIcon {
+                        text: modelData.icon
+                        hovered: parent.parent._hovered
+                        active: false
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
 
-                StyledText {
-                    text: modelData.text
-                    hovered: parent.parent._hovered
-                    active: false
-                }
+                    StyledText {
+                        text: modelData.text
+                        hovered: parent.parent._hovered
+                        active: false
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
             }
 
             MouseArea {
