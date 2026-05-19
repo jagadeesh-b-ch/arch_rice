@@ -43,12 +43,16 @@ Item {
                     rightPadding: 0
                     Layout.preferredWidth: volumeContent.fixedTextWidth
                     horizontalAlignment: Text.AlignRight
+                    active: volumeView.active
+                    hovered: volumeView.hovered
                 }
 
                 MaterialIconPadded {
                     id: volumeIcon
                     text: Icons.getVolumeIcon(root.readableVolume)
                     leftPadding: 0
+                    active: volumeView.active
+                    hovered: volumeView.hovered
                 }
             }
         }

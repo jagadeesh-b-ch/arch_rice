@@ -45,12 +45,16 @@ Item {
                     rightPadding: 0
                     Layout.preferredWidth: brightnessContent.fixedTextWidth
                     horizontalAlignment: Text.AlignRight
+                    active: brightnessView.active
+                    hovered: brightnessView.hovered
                 }
 
                 MaterialIconPadded {
                     id: brightnessIcon
                     text: Icons.getBrightnessIcon(root.readableBrightness)
                     leftPadding: 0
+                    active: brightnessView.active
+                    hovered: brightnessView.hovered
                 }
             }
         }

@@ -21,6 +21,8 @@ Item {
 
     content: MaterialIconPadded {
       text: "\uE3B6"
+      active: wallpaperButton.active
+      hovered: wallpaperButton.hovered
     }
 
     onClicked: pickerWindow.showPicker(root.currentScreen)

@@ -17,6 +17,8 @@ Item {
         id: workspaceComponent
         StyledTextPadded {
             text: workspaceItem.workspaceId
+            active: workspaceComponent.active
+            hovered: workspaceComponent.hovered
         }
         active: workspaceItem.workspaceId == workspaceItem.activeWorkspaceId
         onClicked: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${workspaceItem.workspaceId} })`)

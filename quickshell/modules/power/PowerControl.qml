@@ -17,6 +17,8 @@ Item {
 
         MaterialIconPadded {
             text: "\uE8AC"
+            active: powerControl.active
+            hovered: powerControl.hovered
         }
 
         onHover: isHovered => {
@@ -34,148 +36,32 @@ Item {
         hostWidth: powerControl.width
         hostHeight: powerControl.height
 
-        implicitWidth: contentItem.implicitWidth
-        implicitHeight: contentItem.implicitHeight
+        implicitWidth: optionsWrapper.width
+        implicitHeight: optionsWrapper.height
 
         Item {
-            id: contentItem
-            implicitWidth: optionsColumn.implicitWidth + 2 * Appearance.defaults.hPadding
-            implicitHeight: optionsColumn.implicitHeight + 2 * Appearance.defaults.vPadding
+            id: optionsWrapper
+            width: optionsMenu.width + 2 * Appearance.defaults.hPadding
+            height: optionsMenu.height + 2 * Appearance.defaults.vPadding
 
-            property int _hoverCount: 0
-
-            TextMetrics {
-                id: entryMetrics
+            MenuOptionList {
+                id: optionsMenu
+                x: Appearance.defaults.hPadding
+                y: Appearance.defaults.vPadding
+                model: [
+                    QtObject { property string icon: "lock"; property string text: "Lock"; property var cmd: ["loginctl", "lock-session"] },
+                    QtObject { property string icon: "logout"; property string text: "Log off"; property var cmd: ["loginctl", "terminate-user", "$USER"] },
+                    QtObject { property string icon: "nightlight"; property string text: "Suspend"; property var cmd: ["systemctl", "suspend"] },
+                    QtObject { property string icon: "bedtime"; property string text: "Hibernate"; property var cmd: ["systemctl", "hibernate"] },
+                    QtObject { property string icon: "restart_alt"; property string text: "Restart"; property var cmd: ["systemctl", "reboot"] },
+                    QtObject { property string icon: "power_off"; property string text: "Shutdown"; property var cmd: ["systemctl", "poweroff"] }
+                ]
             }
 
-            property real _maxEntryWidth: 0
-
-            Component.onCompleted: {
-                var entries = [
-                    {
-                        icon: "lock",
-                        text: "Lock"
-                    },
-                    {
-                        icon: "logout",
-                        text: "Log off"
-                    },
-                    {
-                        icon: "nightlight",
-                        text: "Suspend"
-                    },
-                    {
-                        icon: "bedtime",
-                        text: "Hibernate"
-                    },
-                    {
-                        icon: "restart_alt",
-                        text: "Restart"
-                    },
-                    {
-                        icon: "power_off",
-                        text: "Shutdown"
-                    }
-                ];
-                var maxW = 0;
-                for (var i = 0; i < entries.length; i++) {
-                    entryMetrics.font.family = Appearance.defaults.fontFamily;
-                    entryMetrics.font.pointSize = Appearance.defaults.fontSize;
-                    entryMetrics.text = entries[i].text;
-                    var textW = entryMetrics.width;
-                    entryMetrics.font.family = Appearance.fontFamily.material;
-                    entryMetrics.text = entries[i].icon;
-                    var iconW = entryMetrics.width;
-                    maxW = Math.max(maxW, iconW + Appearance.spacing.small + textW);
-                }
-                _maxEntryWidth = maxW + 2 * Appearance.defaults.hPadding;
-            }
-
-            Column {
-                id: optionsColumn
-                anchors.centerIn: parent
-                spacing: Appearance.padding.smallest
-
-                Repeater {
-                    id: entriesRepeater
-                    model: [
-                        {
-                            icon: "lock",
-                            text: "Lock",
-                            cmd: ["loginctl", "lock-session"]
-                        },
-                        {
-                            icon: "logout",
-                            text: "Log off",
-                            cmd: ["loginctl", "terminate-user", "$USER"]
-                        },
-                        {
-                            icon: "nightlight",
-                            text: "Suspend",
-                            cmd: ["systemctl", "suspend"]
-                        },
-                        {
-                            icon: "bedtime",
-                            text: "Hibernate",
-                            cmd: ["systemctl", "hibernate"]
-                        },
-                        {
-                            icon: "restart_alt",
-                            text: "Restart",
-                            cmd: ["systemctl", "reboot"]
-                        },
-                        {
-                            icon: "power_off",
-                            text: "Shutdown",
-                            cmd: ["systemctl", "poweroff"]
-                        }
-                    ]
-
-                    delegate: Rectangle {
-                        required property var modelData
-                        property bool _hovered: false
-                        width: contentItem._maxEntryWidth > 0 ? contentItem._maxEntryWidth : optionRow.implicitWidth + 2 * Appearance.defaults.hPadding
-                        height: optionRow.implicitHeight + 2 * Appearance.defaults.vPadding
-                        radius: Appearance.defaults.rounding
-                        color: _hovered ? Appearance.defaults.color.primary : "transparent"
-
-                        Row {
-                            id: optionRow
-                            anchors.left: parent.left
-                            anchors.leftMargin: Appearance.defaults.hPadding
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: Appearance.spacing.small
-                            MaterialIcon {
-                                text: modelData.icon
-                            }
-                            StyledText {
-                                text: modelData.text
-                            }
-                        }
-
-                        MouseArea {
-                            id: optionMouse
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
-                            onEntered: {
-                                parent._hovered = true;
-                                contentItem._hoverCount++;
-                                powerPopout._contentHovered = true;
-                            }
-                            onExited: {
-                                parent._hovered = false;
-                                contentItem._hoverCount--;
-                                if (contentItem._hoverCount <= 0)
-                                    powerPopout._contentHovered = false;
-                            }
-                            onClicked: {
-                                Quickshell.execDetached(modelData.cmd);
-                                PopOutManager.hide(powerPopout);
-                            }
-                        }
-                    }
-                }
+            Binding {
+                target: powerPopout
+                property: "_contentHovered"
+                value: optionsMenu.contentHovered
             }
         }
     }

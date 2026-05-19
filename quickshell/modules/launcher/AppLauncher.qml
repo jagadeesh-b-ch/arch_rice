@@ -15,6 +15,8 @@ Item {
 
         content: StyledTextPadded {
             text: Icons.osIcon
+            active: launcherView.active
+            hovered: launcherView.hovered
         }
     }
 

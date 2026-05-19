@@ -17,7 +17,7 @@ Rectangle {
     height: interactiveView.height + (2 * spacing)
 
     radius: Appearance.defaults.rounding
-    color: Appearance.defaults.color.secondary
+    color: Appearance.defaults.color.secondaryContainer
 
     Rectangle {
         id: interactiveView
@@ -29,7 +29,7 @@ Rectangle {
         anchors.margins: Appearance.padding.smallest
 
         radius: Appearance.defaults.rounding
-        color: (root.hovered || root.active) ? Appearance.defaults.color.primary : Appearance.defaults.color.secondary
+        color: root.active ? Appearance.defaults.color.primary : root.hovered ? Appearance.defaults.color.secondary : Appearance.defaults.color.secondaryContainer
 
         Loader {
             id: contentLoader

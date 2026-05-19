@@ -16,11 +16,15 @@ InteractiveView {
             rightPadding: 0
             Layout.alignment: Qt.AlignVCenter
             text: root.batteryPercentage + "%"
+            active: root.active
+            hovered: root.hovered
         }
         MaterialIconPadded {
             leftPadding: 0
             Layout.alignment: Qt.AlignVCenter
             text: Icons.getBatteryIcon(root.batteryPercentage, UPower.displayDevice.state === UPowerDeviceState.Charging)
+            active: root.active
+            hovered: root.hovered
         }
     }
 }

@@ -61,10 +61,14 @@ InteractiveView {
                     text: root.cpu
                     width: cpuMetric.width
                     horizontalAlignment: Text.AlignRight
+                    active: root.active
+                    hovered: root.hovered
                 }
                 MaterialIcon {
                     id: cpuIcon
                     text: "memory"
+                    active: root.active
+                    hovered: root.hovered
                 }
             }
 
@@ -77,10 +81,14 @@ InteractiveView {
                     text: root.ram
                     width: ramMetric.width
                     horizontalAlignment: Text.AlignRight
+                    active: root.active
+                    hovered: root.hovered
                 }
                 MaterialIcon {
                     id: ramIcon
                     text: "memory_alt"
+                    active: root.active
+                    hovered: root.hovered
                 }
             }
 
@@ -93,10 +101,14 @@ InteractiveView {
                     text: root.temp
                     width: tempMetric.width
                     horizontalAlignment: Text.AlignRight
+                    active: root.active
+                    hovered: root.hovered
                 }
                 MaterialIcon {
                     id: tempIcon
                     text: "device_thermostat"
+                    active: root.active
+                    hovered: root.hovered
                 }
             }
         }
