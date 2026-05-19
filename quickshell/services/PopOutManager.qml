@@ -3,7 +3,7 @@ import QtQuick 2.15
 import "./../widgets"
 
 QtObject {
-    property PopOutWindow currentPopOut: null
+    property var currentPopOut: null
 
     function show(popOutItem) {
         if (currentPopOut && currentPopOut !== popOutItem) {

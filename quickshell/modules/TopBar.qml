@@ -18,17 +18,15 @@ Scope {
             anchors.left: true
             anchors.right: true
 
-            implicitHeight: topBarContainer.implicitHeight
+            implicitHeight: Math.max(leftModules.implicitHeight, rightModules.implicitHeight) + (2 * Appearance.defaults.vPadding)
 
             Item {
                 id: topBarContainer
-                implicitHeight: Math.max(leftModules.implicitHeight, rightModules.implicitHeight) + (2 * Appearance.defaults.vPadding)
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
+                anchors.fill: parent
                 anchors.leftMargin: Appearance.defaults.hPadding
                 anchors.rightMargin: Appearance.defaults.hPadding
                 anchors.topMargin: Appearance.defaults.vPadding
+                anchors.bottomMargin: Appearance.defaults.vPadding
 
                 MouseArea {
                     z: -1
