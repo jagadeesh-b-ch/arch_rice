@@ -2,6 +2,7 @@ import Quickshell
 import QtQuick
 import "./../widgets"
 import "./../config"
+import "./../services"
 
 Scope {
     Variants {
@@ -18,6 +19,7 @@ Scope {
             anchors.right: true
 
             implicitHeight: topBarContainer.implicitHeight
+
             Item {
                 id: topBarContainer
                 implicitHeight: Math.max(leftModules.implicitHeight, rightModules.implicitHeight) + (2 * Appearance.defaults.vPadding)
@@ -27,8 +29,12 @@ Scope {
                 anchors.leftMargin: Appearance.defaults.hPadding
                 anchors.rightMargin: Appearance.defaults.hPadding
                 anchors.topMargin: Appearance.defaults.vPadding
-                anchors.bottomMargin: Appearance.defaults.vPadding
-                anchors.verticalCenter: parent.verticalCenter
+
+                MouseArea {
+                    z: -1
+                    anchors.fill: parent
+                    onClicked: PopOutManager.hideCurrent()
+                }
 
                 LeftModules {
                     id: leftModules
@@ -41,6 +47,13 @@ Scope {
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
                     currentScreen: topBar.screen
+                }
+
+                Connections {
+                    target: Hyprland
+                    function onWindowFocusChanged() {
+                        PopOutManager.hideCurrent();
+                    }
                 }
             }
         }

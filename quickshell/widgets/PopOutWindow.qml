@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import Quickshell
 import "./../config"
+import "./../services"
 
 PopupWindow {
     id: popOutWindow
@@ -11,14 +12,53 @@ PopupWindow {
     property int hostHeight: 3
     property int hPadding: Appearance.defaults.hPadding
     property int vPadding: Appearance.defaults.vPadding
-    property bool popoutHovered: false
-    property bool _contentHovered: false
 
     color: "transparent"
 
     anchor.item: anchorTarget
     anchor.rect.x: -((implicitWidth - hostWidth) / 2 + hPadding)
     anchor.rect.y: hostHeight + (2 * vPadding)
+
+    onClosed: PopOutManager.hide(popOutWindow)
+    onVisibleChanged: {
+        if (!visible) {
+            outsideTimer.stop();
+            PopOutManager.hide(popOutWindow);
+        } else {
+            initCheckTimer.start();
+        }
+    }
+
+    Shortcut {
+        sequence: "Escape"
+        onActivated: PopOutManager.hide(popOutWindow)
+    }
+
+    Timer {
+        id: outsideTimer
+        interval: 1000
+        onTriggered: PopOutManager.hide(popOutWindow)
+    }
+
+    Timer {
+        id: initCheckTimer
+        interval: 0
+        onTriggered: {
+            if (visible && !hoverTracker.hovered)
+                outsideTimer.start();
+        }
+    }
+
+    HoverHandler {
+        id: hoverTracker
+        target: popOutView
+        onHoveredChanged: {
+            if (hoverTracker.hovered)
+                outsideTimer.stop();
+            else if (visible)
+                outsideTimer.restart();
+        }
+    }
 
     Rectangle {
         id: popOutView
@@ -28,21 +68,6 @@ PopupWindow {
 
         default property alias content: contentLoader.sourceComponent
 
-        MouseArea {
-            id: hoverTrack
-            anchors.fill: parent
-            hoverEnabled: true
-            acceptedButtons: Qt.NoButton
-            onEntered: {
-                popOutWindow.popoutHovered = true;
-                hoverTimer.stop();
-            }
-            onExited: {
-                popOutWindow.popoutHovered = false;
-                hoverTimer.restart();
-            }
-        }
-
         Loader {
             id: contentLoader
         }
@@ -50,27 +75,13 @@ PopupWindow {
 
     function show() {
         visible = true;
-        popoutHovered = true;
-        hoverTimer.stop();
     }
 
     function forceHide() {
         visible = false;
-        hoverTimer.stop();
     }
 
     function restartAutoHide() {
-        popoutHovered = false;
-        hoverTimer.restart();
-    }
-
-    Timer {
-        id: hoverTimer
-        interval: 2000
-        onTriggered: {
-            if (!popOutWindow.popoutHovered && !popOutWindow._contentHovered) {
-                popOutWindow.forceHide();
-            }
-        }
+        forceHide();
     }
 }

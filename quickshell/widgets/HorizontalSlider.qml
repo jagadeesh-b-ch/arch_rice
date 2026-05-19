@@ -53,13 +53,8 @@ PopOutWindow {
             }
         }
 
-        onHoveredChanged: {
-            sliderPopout._contentHovered = slider.hovered;
-        }
-
         onMoved: {
             sliderPopout.slide(value);
-            sliderPopout.restartAutoHide();
         }
     }
 }

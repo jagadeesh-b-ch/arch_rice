@@ -40,19 +40,20 @@ Rectangle {
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
             preventStealing: true
-            propagateComposedEvents: true
             onEntered: {
                 root.hovered = true;
-                if (!root.popoutManagerExempt) {
-                    PopOutManager.hideCurrent();
-                }
                 root.hover(true);
             }
             onExited: {
                 root.hovered = false;
                 root.hover(false);
             }
-            onClicked: root.clicked()
+            onClicked: {
+                if (!root.popoutManagerExempt) {
+                    PopOutManager.hideCurrent();
+                }
+                root.clicked()
+            }
         }
     }
 }

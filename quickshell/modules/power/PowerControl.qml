@@ -21,11 +21,11 @@ Item {
             hovered: powerControl.hovered
         }
 
-        onHover: isHovered => {
-            if (isHovered) {
-                PopOutManager.show(powerPopout);
+        onClicked: {
+            if (PopOutManager.currentPopOut === powerPopout) {
+                PopOutManager.hide(powerPopout);
             } else {
-                powerPopout.restartAutoHide();
+                PopOutManager.show(powerPopout);
             }
         }
     }
@@ -56,12 +56,6 @@ Item {
                     QtObject { property string icon: "restart_alt"; property string text: "Restart"; property var cmd: ["systemctl", "reboot"] },
                     QtObject { property string icon: "power_off"; property string text: "Shutdown"; property var cmd: ["systemctl", "poweroff"] }
                 ]
-            }
-
-            Binding {
-                target: powerPopout
-                property: "_contentHovered"
-                value: optionsMenu.contentHovered
             }
         }
     }

@@ -8,8 +8,6 @@ Column {
     id: root
 
     property list<QtObject> model: []
-    property int hoverCount: 0
-    readonly property bool contentHovered: hoverCount > 0
 
     spacing: Appearance.padding.smallest
 
@@ -78,14 +76,12 @@ Column {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                onEntered: {
-                    parent._hovered = true;
-                    root.hoverCount++;
-                }
-                onExited: {
-                    parent._hovered = false;
-                    root.hoverCount--;
-                }
+                    onEntered: {
+                        parent._hovered = true;
+                    }
+                    onExited: {
+                        parent._hovered = false;
+                    }
                 onClicked: {
                     if (modelData.cmd)
                         Quickshell.execDetached(modelData.cmd);

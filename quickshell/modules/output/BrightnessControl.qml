@@ -61,11 +61,11 @@ Item {
             }
         }
 
-        onHover: isHovered => {
-            if (isHovered) {
-                PopOutManager.show(brightnessSlider);
+        onClicked: {
+            if (PopOutManager.currentPopOut === brightnessSlider) {
+                PopOutManager.hide(brightnessSlider);
             } else {
-                brightnessSlider.restartAutoHide();
+                PopOutManager.show(brightnessSlider);
             }
         }
     }

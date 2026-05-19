@@ -59,12 +59,11 @@ Item {
             }
         }
 
-        onClicked: Hyprland.dispatch(`hl.dsp.exec_cmd("${DefaultApps.audio}", { tag = "bar_launch" })`)
-        onHover: isHovered => {
-            if (isHovered) {
-                PopOutManager.show(volumeSlider);
+        onClicked: {
+            if (PopOutManager.currentPopOut === volumeSlider) {
+                PopOutManager.hide(volumeSlider);
             } else {
-                volumeSlider.restartAutoHide();
+                PopOutManager.show(volumeSlider);
             }
         }
     }
