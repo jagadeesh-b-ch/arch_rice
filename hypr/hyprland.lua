@@ -181,7 +181,7 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = 1 }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = 0 }))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("[tag +bar_launch] pwvucontrol"))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("quickshell -p /home/jaggu/.config/quickshell/locker/shell.qml"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("quickshell -p ~/.config/quickshell/locker/shell.qml"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
