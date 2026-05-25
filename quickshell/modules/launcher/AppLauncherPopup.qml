@@ -4,6 +4,7 @@ import Quickshell.Io
 import Quickshell.Wayland
 import "./../../config"
 import "./../../services"
+import Quickshell.Hyprland
 import "./../../utils"
 import "./../../widgets"
 
@@ -31,8 +32,13 @@ PanelWindow {
 
     IpcHandler {
         target: "launcher"
-        function open(): void { PopOutManager.hideCurrent(); popup.show(); }
-        function close(): void { popup.forceHide(); }
+        function open(): void {
+            PopOutManager.hideCurrent();
+            popup.show();
+        }
+        function close(): void {
+            popup.forceHide();
+        }
     }
 
     ListModel {
@@ -141,7 +147,13 @@ PanelWindow {
                     lastUsed: now
                 };
             }
-            app.execute();
+            // Launch app on current workspace
+            var command = app.exec;
+            if (Hyprland.activeWsId > 0) {
+                Hyprland.dispatch("exec workspace " + Hyprland.activeWsId + " " + command);
+            } else {
+                app.execute();
+            }
         }
         popup.visible = false;
     }

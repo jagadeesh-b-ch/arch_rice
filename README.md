@@ -17,6 +17,7 @@ Packages that need to be installed to rice a fresh system
 - pass
 - fzf
 - hyprland
+- hypridle
 - quickshell
 - qmlls
 - yazi
