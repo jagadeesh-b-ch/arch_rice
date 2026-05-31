@@ -1,5 +1,0 @@
-module config
-singleton Appearance Appearance.qml
-StyledFontMetric StyledFontMetric.qml
-singleton DefaultApps DefaultApps.qml
-

@@ -5,7 +5,7 @@ return {
       servers = {
         qmlls = {
           -- this forces LazyVim to use the symlink for qmlls in /usr/bin/qmlls
-          cmd = { "/lib/qt6/bin/qmlls" },
+          cmd = { "/usr/lib/qt6/bin/qmlls" },
           settings = {
             -- Optional: ensuring the imports are recognized
             qml = {

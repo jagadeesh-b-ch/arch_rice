@@ -1,6 +1,7 @@
 /*
 !.gitignore
 !README.md
+!AGENTS.md
 !alacritty/
 !alacritty/**
 !ghostty/
@@ -24,4 +25,6 @@ nvim/lazy-lock.json
 !waybar/**
 !wlogout/
 !wlogout/**
+!.agents/
+!.agents/**
 
