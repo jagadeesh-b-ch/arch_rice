@@ -44,8 +44,8 @@ return {
             list = {
               keys = {
                 -- Remap Enter or 'l' to use our recursive logic instead of standard toggle
-                ["<CR>"] = "recursive_toggle",
-                ["l"] = "recursive_toggle",
+                -- ["<CR>"] = "recursive_toggle",
+                -- ["l"] = "recursive_toggle",
               },
             },
           },
